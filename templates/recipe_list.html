@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recipes</title>
+</head>
+<body>
+    <h1>All Recipes</h1>
+    {% for recipe in recipes %}
+        <div style="margin-bottom: 20px;">
+            <h2>{{ recipe.title }}</h2>
+            {% if recipe.image %}
+                <img src="{{ recipe.image.url }}" width="200"><br>
+            {% endif %}
+            <strong>Cuisine:</strong> {{ recipe.cuisine.name }}<br>
+            <strong>Description:</strong> {{ recipe.description }}<br>
+            <a href="#">More details...</a>
+        </div>
+    {% empty %}
+        <p>No recipes found.</p>
+    {% endfor %}
+</body>
+</html>
