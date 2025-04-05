@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}Eato{% endblock %}</title>
+
+  <!-- Load static files -->
+  {% load static %}
+
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 2rem;
+      background-color: #f8f8f8;
+    }
+
+    h1, h2, h3 {
+      color: #333;
+    }
+
+    form input, form textarea, form select, form button {
+      display: block;
+      margin: 0.5rem 0;
+      padding: 0.5rem;
+      width: 100%;
+      max-width: 500px;
+    }
+
+    .ingredient-group {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .ingredient-group input {
+      flex: 1;
+    }
+
+    .ingredient-group button {
+      background-color: #e74c3c;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+    }
+
+    button[type="submit"] {
+      background-color: #27ae60;
+      color: white;
+      border: none;
+      padding: 0.7rem 1.5rem;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    a {
+      color: #3498db;
+      text-decoration: none;
+    }
+
+    nav {
+      margin-bottom: 2rem;
+    }
+
+    nav a {
+      margin-right: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+  </nav>
+  <main>
+    {% block content %}
+    <!-- Page content will insert here -->
+    {% endblock %}
+  </main>
+
+</body>
+</html>

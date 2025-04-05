@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Add a New Recipe</h1>
+
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    
+    <!-- Recipe Fields -->
+    <p>{{ form.title.label_tag }} {{ form.title }}</p>
+    <p>{{ form.description.label_tag }} {{ form.description }}</p>
+    <p>{{ form.image.label_tag }} {{ form.image }}</p>
+    <p>{{ form.cuisine.label_tag }} {{ form.cuisine }}</p>
+    <p>{{ form.meal_types.label_tag }} {{ form.meal_types }}</p>
+    <p>{{ form.allergy_tags.label_tag }} {{ form.allergy_tags }}</p>
+    <p>{{ form.instructions.label_tag }} {{ form.instructions }}</p>
+
+    <hr>
+
+    <h3>Ingredients</h3>
+    <div id="ingredient-container">
+      <div class="ingredient-group">
+        <input type="text" name="ingredient_name" placeholder="Ingredient name" required>
+        <input type="number" name="ingredient_quantity" placeholder="Quantity" step="0.01" required>
+        <input type="text" name="ingredient_unit" placeholder="Unit (e.g., gram, cup)" required>
+        <button type="button" onclick="removeIngredient(this)">Remove</button>
+      </div>
+    </div>
+
+    <button type="button" onclick="addIngredient()">Add Another Ingredient</button>
+    <br><br>
+
+    <button type="submit">Submit Recipe</button>
+  </form>
+
+  <script>
+    function addIngredient() {
+      const container = document.getElementById('ingredient-container');
+      const group = document.createElement('div');
+      group.classList.add('ingredient-group');
+      group.innerHTML = `
+        <input type="text" name="ingredient_name" placeholder="Ingredient name" required>
+        <input type="number" name="ingredient_quantity" placeholder="Quantity" step="0.01" required>
+        <input type="text" name="ingredient_unit" placeholder="Unit (e.g., g, cup)" required>
+        <button type="button" onclick="removeIngredient(this)">Remove</button>
+      `;
+      container.appendChild(group);
+    }
+
+    function removeIngredient(btn) {
+      btn.parentElement.remove();
+    }
+  </script>
+{% endblock %}
