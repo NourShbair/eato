@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path
 from eato_app.views.recipes_list import recipes_list
 from eato_app.views.add_recipe import add_recipe
+from eato_app.views.signup import signup
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -25,5 +26,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('recipes/', recipes_list, name='recipes_list'),
     path('recipes/add/', add_recipe, name='add_recipe'),
-    # static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT),
+    path('signup/', signup, name='signup'),
 ]
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
