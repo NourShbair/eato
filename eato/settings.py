@@ -143,10 +143,13 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Cloudinary Configuration
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': os.environ.get("CLOUD_NAME"),
-    'API_KEY': os.environ.get("API_KEY"),
-    'API_SECRET': os.environ.get("API_SECRET"),
-}
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+cloudinary.config(     
+    cloud_name= os.environ.get("CLOUDINARY_CLOUD_NAME"),     
+    api_key=os.environ.get("CLOUDINARY_API_KEY"),     
+    api_secret=os.environ.get('CLOUDINARY_API_SECRET'),     
+    secure=True )
+# Enable media upload
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'

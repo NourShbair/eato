@@ -16,10 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from eato_app import views
+from eato_app.views.recipes_list import recipes_list
+from eato_app.views.add_recipe import add_recipe
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('recipes/', views.recipe_list, name='recipe_list'),
-
+    path('recipes/', recipes_list, name='recipes_list'),
+    path('recipes/add/', add_recipe, name='add_recipe'),
+    # static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT),
 ]
