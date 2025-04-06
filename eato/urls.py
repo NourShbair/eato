@@ -15,17 +15,21 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from eato_app.views.recipes_list import recipes_list
 from eato_app.views.add_recipe import add_recipe
-from eato_app.views.signup import signup
+from eato_app.views.registration.signup import signup
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib import admin
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('recipes/', recipes_list, name='recipes_list'),
     path('recipes/add/', add_recipe, name='add_recipe'),
     path('signup/', signup, name='signup'),
+    path('login/', auth_views.LoginView.as_view(template_name='registration/login.html',next_page='login' ), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
