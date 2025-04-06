@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from eato_app.views.recipes_list import recipes_list
 from eato_app.views.add_recipe import add_recipe
-from eato_app.views.registration.signup import signup
+from eato_app.views.signup import signup
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
