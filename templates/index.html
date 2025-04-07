@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>Welcome, {{ user.username }}!</h2>
+
+  <section>
+    <h3>Your Stats</h3>
+    <ul>
+      <li>Recipes posted: {{ user_recipe_count }}</li>
+      <li>Recipes liked: {{ user_liked_count }}</li>
+      <li>Recipes saved: {{ user_saved_count }}</li>
+    </ul>
+  </section>
+
+  <section>
+    <h3>Meal Types</h3>
+    <div>
+      {% for type in meal_types %}
+        <a href="{% url 'meal_type_recipes' type.id %}">{{ type.name }}</a>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section>
+    <h3>Cuisines</h3>
+    <div>
+      {% for cuisine in cuisines %}
+        <a href="{% url 'cuisine_recipes' cuisine.id %}">{{ cuisine.name }}</a>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section>
+    <h3>Allergies</h3>
+    <div>
+      {% for allergy in allergies %}
+        <a href="{% url 'allergy_recipes' allergy.id %}">{{ allergy.name }}</a>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section>
+    <h3>Recently Added Recipes</h3>
+    <ul>
+      {% for recipe in recent_recipes %}
+        <li>{{ recipe.title }} ({{ recipe.created_at|date:"M d, Y" }})</li>
+      {% empty %}
+        <li>No recipes added yet.</li>
+      {% endfor %}
+    </ul>
+  </section>
+{% endblock %}
