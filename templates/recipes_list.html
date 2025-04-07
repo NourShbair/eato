@@ -1,22 +1,31 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Recipes</title>
-</head>
-<body>
-    <h1>All Recipes</h1>
+{% extends 'base.html' %}
+{% block content %}
+<div class="container py-4">
+  <h2 class="section-title">All Recipes</h2>
+  <div class="row">
     {% for recipe in recipes %}
-        <div style="margin-bottom: 20px;">
-            <h2>{{ recipe.title }}</h2>
-            {% if recipe.image %}
-                <img src="{{ recipe.image.url }}" width="200"><br>
-            {% endif %}
-            <strong>Cuisine:</strong> {{ recipe.cuisine.name }}<br>
-            <strong>Description:</strong> {{ recipe.description }}<br>
-            <a href="#">More details...</a>
+    <div class="col-md-4 mb-4">
+      <div class="card recipe-card">
+        <img src="{{ recipe.image.url }}" alt="{{ recipe.title }}" class="recipe-image">
+        <div class="recipe-content">
+          <h5 class="card-title">{{ recipe.title }}</h5>
+          <p class="small text-muted">By {{ recipe.created_by.username }}</p>
+          
+          <div class="recipe-tags mb-2">
+            <span>{{ recipe.meal_type.name }}</span>
+            {% for cuisine in recipe.cuisines.all %}
+              <span>{{ cuisine.name }}</span>
+            {% endfor %}
+            {% for allergy in recipe.allergies.all %}
+              <span>{{ allergy.name }}</span>
+            {% endfor %}
+          </div>
+
+          <a href="#" class="btn btn-sm btn-foodie">View Recipe</a>
         </div>
-    {% empty %}
-        <p>No recipes found.</p>
+      </div>
+    </div>
     {% endfor %}
-</body>
-</html>
+  </div>
+</div>
+{% endblock %}
