@@ -18,6 +18,9 @@ class RecipeForm(forms.ModelForm):
         widgets = {
             'meal_types': forms.CheckboxSelectMultiple,
             'allergy_tags': forms.CheckboxSelectMultiple,
+            'cuisines': forms.SelectMultiple(attrs={'class': 'form-select'}),
+            'ingredients': forms.Textarea(attrs={'rows': 3}),
+            'instructions': forms.Textarea(attrs={'rows': 5}),
         }
 
 @login_required
@@ -28,8 +31,8 @@ def add_recipe(request):
             recipe = form.save(commit=False)
             recipe.created_by = request.user
             recipe.save()
-            form.save_m2m()  # Save many-to-many fields
-            return redirect('add_recipe')
+            form.save_m2m()
+            return redirect('recipe_list')
     else:
         form = RecipeForm()
     return render(request, 'add_recipe.html', {'form': form})
