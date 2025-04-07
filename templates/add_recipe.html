@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load widget_tweaks %}
 {% block content %}
 
 <div class="container my-5">
@@ -8,48 +9,48 @@
     {% csrf_token %}
     <div class="row g-3">
 
-      <!-- Title -->
-      <div class="col-md-6">
-        <label for="id_title" class="form-label">Recipe Title</label>
-        {{ form.title }}
-      </div>
-
-      <!-- Image -->
-      <div class="col-md-6">
-        <label for="id_image" class="form-label">Recipe Image</label>
-        {{ form.image}}
-      </div>
-
-      <!-- Meal Type -->
-      <div class="col-md-4">
-        <label for="id_meal_type" class="form-label">Meal Type</label>
-        {{ form.meal_type}}
-      </div>
-
-      <!-- Cuisine -->
-      <div class="col-md-4">
-        <label for="id_cuisines" class="form-label">Cuisine(s)</label>
-        {{ form.cuisines}}
-      </div>
-
-      <!-- Allergies -->
-      <div class="col-md-4">
-        <label for="id_allergies" class="form-label">Allergies</label>
-        {{ form.allergies}}
-      </div>
-
-      <!-- Ingredients -->
-      <div class="col-12">
-        <label for="id_ingredients" class="form-label">Ingredients</label>
-        {{ form.ingredients}}
-        <div class="form-text">Include quantities & units, like "2 cups of flour"</div>
-      </div>
-
-      <!-- Instructions -->
-      <div class="col-12">
-        <label for="id_instructions" class="form-label">Instructions</label>
-        {{ form.instructions}}
-      </div>
+            <!-- Title -->
+            <div class="col-md-6">
+              <label for="id_title" class="form-label">Recipe Title</label>
+              {{ form.title|add_class:"form-control" }}
+            </div>
+      
+            <!-- Image -->
+            <div class="col-md-6">
+              <label for="id_image" class="form-label">Recipe Image</label>
+              {{ form.image|add_class:"form-control" }}
+            </div>
+      
+            <!-- Meal Type -->
+            <div class="col-md-4">
+              <label for="id_meal_type" class="form-label">Meal Type</label>
+              {{ form.meal_type|add_class:"form-select" }}
+            </div>
+      
+            <!-- Cuisine -->
+            <div class="col-md-4">
+              <label for="id_cuisines" class="form-label">Cuisine(s)</label>
+              {{ form.cuisines|add_class:"form-select" }}
+            </div>
+      
+            <!-- Allergies -->
+            <div class="col-md-4">
+              <label for="id_allergies" class="form-label">Allergies</label>
+              {{ form.allergies|add_class:"form-select" }}
+            </div>
+      
+            <!-- Ingredients -->
+            <div class="col-12">
+              <label for="id_ingredients" class="form-label">Ingredients</label>
+              {{ form.ingredients|add_class:"form-control" }}
+              <div class="form-text">Include quantities & units, like "2 cups of flour"</div>
+            </div>
+      
+            <!-- Instructions -->
+            <div class="col-12">
+              <label for="id_instructions" class="form-label">Instructions</label>
+              {{ form.instructions|add_class:"form-control" }}
+            </div>
 
       <div class="col-12 mt-3">
         <button type="submit" class="btn btn-foodie px-4">Submit Recipe</button>
