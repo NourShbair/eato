@@ -1,31 +1,54 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 {% block content %}
-<div class="container py-4">
-  <h2 class="section-title">All Recipes</h2>
-  <div class="row">
-    {% for recipe in recipes %}
-    <div class="col-md-4 mb-4">
-      <div class="card recipe-card">
-        <img src="{{ recipe.image.url }}" alt="{{ recipe.title }}" class="recipe-image">
-        <div class="recipe-content">
-          <h5 class="card-title">{{ recipe.title }}</h5>
-          <p class="small text-muted">By {{ recipe.created_by.username }}</p>
-          
-          <div class="recipe-tags mb-2">
-            <span>{{ recipe.meal_type.name }}</span>
-            {% for cuisine in recipe.cuisines.all %}
-              <span>{{ cuisine.name }}</span>
-            {% endfor %}
-            {% for allergy in recipe.allergies.all %}
-              <span>{{ allergy.name }}</span>
-            {% endfor %}
-          </div>
+<div class="container py-5">
+  <h2 class="text-orange mb-4">📖 All Recipes</h2>
 
-          <a href="{% url 'recipe_details' recipe.id %}" class="btn btn-sm btn-foodie">View Recipe</a>
+  <div class="row">
+    {% for recipe in page_obj %}
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm">
+          <img src="{{ recipe.image.url }}" class="card-img-top" alt="{{ recipe.title }}">
+          <div class="card-body">
+            <h5 class="card-title">{{ recipe.title }}</h5>
+            <p class="card-text">{{ recipe.description|truncatewords:20 }}</p>
+            <a href="{% url 'recipe_details' recipe.id %}" class="btn btn-sm btn-foodie">View</a>
+          </div>
         </div>
       </div>
-    </div>
+    {% empty %}
+      <p>No recipes available.</p>
     {% endfor %}
   </div>
+
+  <!-- Pagination Controls -->
+  <nav aria-label="Page navigation" class="mt-4">
+    <ul class="pagination justify-content-center">
+      {% if page_obj.has_previous %}
+        <li class="page-item">
+          <a class="page-link" href="?q={{ request.GET.q }}&page={{ page_obj.previous_page_number }}">Previous</a>
+        </li>
+      {% else %}
+        <li class="page-item disabled"><span class="page-link">Previous</span></li>
+      {% endif %}
+
+      {% for num in page_obj.paginator.page_range %}
+        {% if page_obj.number == num %}
+          <li class="page-item active"><span class="page-link">{{ num }}</span></li>
+        {% else %}
+          <li class="page-item">
+            <a class="page-link" href="?q={{ request.GET.q }}&page={{ num }}">{{ num }}</a>
+          </li>
+        {% endif %}
+      {% endfor %}
+
+      {% if page_obj.has_next %}
+        <li class="page-item">
+          <a class="page-link" href="?q={{ request.GET.q }}&page={{ page_obj.next_page_number }}">Next</a>
+        </li>
+      {% else %}
+        <li class="page-item disabled"><span class="page-link">Next</span></li>
+      {% endif %}
+    </ul>
+  </nav>
 </div>
 {% endblock %}

@@ -24,26 +24,32 @@
             <!-- Meal Type -->
             <div class="col-md-4">
               <label for="id_meal_type" class="form-label">Meal Type</label>
-              {{ form.meal_type|add_class:"form-select" }}
+              {{ form.meal_types|add_class:"form-select" }}
+            </div>
+
+            <!-- Allergies -->
+            <div class="col-md-4">
+              <label for="id_allergies" class="form-label">Allergies</label>
+              {{ form.allergy_tags|add_class:"form-select" }}
             </div>
       
             <!-- Cuisine -->
             <div class="col-md-4">
               <label for="id_cuisines" class="form-label">Cuisine(s)</label>
-              {{ form.cuisines|add_class:"form-select" }}
-            </div>
-      
-            <!-- Allergies -->
-            <div class="col-md-4">
-              <label for="id_allergies" class="form-label">Allergies</label>
-              {{ form.allergies|add_class:"form-select" }}
+              {{ form.cuisine|add_class:"form-select" }}
             </div>
       
             <!-- Ingredients -->
-            <div class="col-12">
+            {% comment %} <div class="col-12">
               <label for="id_ingredients" class="form-label">Ingredients</label>
               {{ form.ingredients|add_class:"form-control" }}
               <div class="form-text">Include quantities & units, like "2 cups of flour"</div>
+            </div> {% endcomment %}
+            <div class="col-12 ingredient-group">
+              <label for="id_ingredients" class="form-label">Ingredients</label>
+              <input type="text" name="ingredient_name" placeholder="Name">
+              <input type="number" name="ingredient_quantity" placeholder="Qty">
+              <input type="text" name="ingredient_unit" placeholder="Unit">
             </div>
       
             <!-- Instructions -->

@@ -171,3 +171,18 @@ nav a {
   font-size: 0.9rem;
   margin-right: 0.25rem;
 }
+
+.page-link {
+  border-radius: 20px;
+  color: #d2691e;
+}
+
+.page-item.active .page-link {
+  background-color: #f4a261;
+  border-color: #f4a261;
+  color: white;
+}
+
+.page-item.disabled .page-link {
+  color: #aaa;
+}

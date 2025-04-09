@@ -26,14 +26,14 @@ class AllergyTag(models.Model):
 
 # Ingredient model (e.g., Flour, Eggs, Milk)
 class Ingredient(models.Model):
-    name = models.CharField(max_length=200, unique=True)
+    name = models.CharField(max_length=100, unique=True)
 
     def __str__(self):
         return self.name
 
 # Recipe model (Main model for storing recipes)
 class Recipe(models.Model):
-    title = models.CharField(max_length=255)
+    title = models.CharField(max_length=200)
     description = models.TextField()
     instructions = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)

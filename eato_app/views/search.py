@@ -1,6 +1,7 @@
-from ..models import Recipe, MealType, Cuisine
-from django.db.models import Q
 from django.shortcuts import render
+from ..models import Recipe, MealType, Cuisine
+from django.core.paginator import Paginator
+from django.db.models import Q
 
 def recipe_search(request):
     query = request.GET.get('q', '')
@@ -22,11 +23,20 @@ def recipe_search(request):
     if cuisine_id:
         recipes = recipes.filter(cuisine__id=cuisine_id)
 
+    recipes = recipes.distinct()
+
+    # Pagination
+    paginator = Paginator(recipes, 9)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
     context = {
         'query': query,
-        'results': recipes.distinct(),
+        'page_obj': page_obj,
         'meal_types': MealType.objects.all(),
         'cuisines': Cuisine.objects.all(),
+        'selected_category': category_id,
+        'selected_cuisine': cuisine_id,
     }
 
     return render(request, 'search_results.html', context)

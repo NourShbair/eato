@@ -12,7 +12,7 @@
       <h2 class="text-orange">{{ recipe.title }}</h2>
       <p class="text-muted">Created by <strong>{{ recipe.created_by.username }}</strong> | {{ recipe.created_at|date:"M d, Y" }}</p>
 
-      <p><strong>Meal Type:</strong> {{ recipe.meal_type.name }}</p>
+      <p><strong>Meal Type:</strong> {{ recipe.meal_types.name }}</p>
       <p><strong>Cuisine:</strong> {{ recipe.cuisine.name }}</p>
 
       {% if recipe.allergies.all %}
