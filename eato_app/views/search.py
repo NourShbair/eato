@@ -12,7 +12,7 @@ def recipe_search(request):
     if query:
         recipes = recipes.filter(
             Q(title__icontains=query) |
-            Q(ingredients__icontains=query) |
+            Q(recipeingredient__ingredient__name__icontains=query) |
             Q(instructions__icontains=query)
         )
 

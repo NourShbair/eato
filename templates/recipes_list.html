@@ -21,7 +21,7 @@
             {% endfor %}
           </div>
 
-          <a href="#" class="btn btn-sm btn-foodie">View Recipe</a>
+          <a href="{% url 'recipe_details' recipe.id %}" class="btn btn-sm btn-foodie">View Recipe</a>
         </div>
       </div>
     </div>

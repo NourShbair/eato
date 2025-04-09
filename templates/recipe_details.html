@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container py-5">
+  <div class="row">
+    <!-- Recipe Image -->
+    <div class="col-md-6 mb-4">
+      <img src="{{ recipe.image.url }}" class="img-fluid rounded shadow" alt="{{ recipe.title }}">
+    </div>
+
+    <!-- Recipe Info -->
+    <div class="col-md-6">
+      <h2 class="text-orange">{{ recipe.title }}</h2>
+      <p class="text-muted">Created by <strong>{{ recipe.created_by.username }}</strong> | {{ recipe.created_at|date:"M d, Y" }}</p>
+
+      <p><strong>Meal Type:</strong> {{ recipe.meal_type.name }}</p>
+      <p><strong>Cuisine:</strong> {{ recipe.cuisine.name }}</p>
+
+      {% if recipe.allergies.all %}
+        <p><strong>Allergy Info:</strong>
+          {% for tag in recipe.allergies.all %}
+            <span class="badge bg-warning text-dark">{{ tag.name }}</span>
+          {% endfor %}
+        </p>
+      {% endif %}
+
+      <p class="lead mt-4">{{ recipe.description }}</p>
+    </div>
+  </div>
+
+  <hr class="my-5">
+
+  <!-- Ingredients -->
+  <div class="mb-5">
+    <h4 class="text-orange mb-3">🧂 Ingredients</h4>
+    <ul class="list-group list-group-flush">
+      {% for item in ingredients %}
+        <li class="list-group-item">{{ item.quantity }} {{ item.unit }} {{ item.ingredient.name }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <!-- Instructions -->
+  <div>
+    <h4 class="text-orange mb-3">👨‍🍳 Instructions</h4>
+    <p style="white-space: pre-wrap;">{{ recipe.instructions }}</p>
+  </div>
+</div>
+{% endblock %}

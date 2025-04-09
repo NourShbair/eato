@@ -21,6 +21,7 @@ from eato_app.views.recipes_list import recipes_list
 from eato_app.views.add_recipe import add_recipe
 from eato_app.views.signup import signup
 from eato_app.views.search import recipe_search
+from eato_app.views.recipe_details import recipe_details
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
@@ -31,6 +32,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('recipes/', recipes_list, name='recipes_list'),
     path('recipes/add/', add_recipe, name='add_recipe'),
+    path('recipes/<int:recipe_id>/', recipe_details, name='recipe_details'),
     path('signup/', signup, name='signup'),
     path('login/', auth_views.LoginView.as_view(template_name='registration/login.html',next_page='index' ), name='login'),
     path('logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),
