@@ -40,13 +40,21 @@ class Recipe(models.Model):
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)  # User who created the recipe
     cuisine = models.ForeignKey(Cuisine, on_delete=models.SET_NULL, null=True)
     image = CloudinaryField('image', null=True, blank=True)  # Store images on Cloudinary
-
+    likes = models.ManyToManyField(User, related_name='liked_recipes', blank=True)
+    favorites = models.ManyToManyField(User, related_name='favorite_recipes', blank=True)
+    
     # Many-to-Many relationships
     meal_types = models.ManyToManyField(MealType, blank=True)
     allergy_tags = models.ManyToManyField(AllergyTag, blank=True)
 
     def __str__(self):
         return self.title
+    
+    def total_likes(self):
+        return self.likes.count()
+
+    def total_favorites(self):
+        return self.favorites.count()
 
 # RecipeIngredient model (Intermediate model to store ingredient details)
 class RecipeIngredient(models.Model):

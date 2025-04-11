@@ -47,3 +47,13 @@ def allergy_recipes(request, allergy_id):
         'recipes': recipes,
         'filter_type': f"Allergy: {allergy.name}"
     })
+
+@login_required
+def my_likes(request):
+    recipes = request.user.liked_recipes.all()
+    return render(request, 'my_likes.html', {'recipes': recipes})
+
+@login_required
+def my_saves(request):
+    recipes = request.user.favorite_recipes.all()
+    return render(request, 'my_saves.html', {'recipes': recipes})

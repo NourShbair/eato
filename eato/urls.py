@@ -22,6 +22,7 @@ from eato_app.views.add_recipe import add_recipe
 from eato_app.views.signup import signup
 from eato_app.views.search import recipe_search
 from eato_app.views.recipe_details import recipe_details
+from eato_app.views.views import toggle_like, toggle_save
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
@@ -40,5 +41,7 @@ urlpatterns = [
     path('cuisine/<int:cuisine_id>/', cuisine_recipes, name='cuisine_recipes'),
     path('allergy/<int:allergy_id>/', allergy_recipes, name='allergy_recipes'),
     path('search/', recipe_search, name='recipe_search'),
+    path('recipes/<int:recipe_id>/like/', toggle_like, name='toggle_like'),
+    path('recipes/<int:recipe_id>/save/', toggle_save, name='toggle_save'),
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

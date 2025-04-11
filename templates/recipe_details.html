@@ -2,6 +2,24 @@
 {% block content %}
 <div class="container py-5">
   <div class="row">
+    <div class="d-flex gap-3 mt-3">
+      <!-- Like button -->
+      <form method="POST" action="{% url 'toggle_like' recipe.id %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-outline-danger">
+          ❤️ {% if user in recipe.likes.all %} Unlike {% else %} Like {% endif %} ({{ recipe.total_likes }})
+        </button>
+      </form>
+    
+      <!-- Save button -->
+      <form method="POST" action="{% url 'toggle_save' recipe.id %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-outline-warning">
+          ⭐ {% if user in recipe.favorites.all %} Unsave {% else %} Save {% endif %} ({{ recipe.total_favorites }})
+        </button>
+      </form>
+    </div>
+    
     <!-- Recipe Image -->
     <div class="col-md-6 mb-4">
       <img src="{{ recipe.image.url }}" class="img-fluid rounded shadow" alt="{{ recipe.title }}">

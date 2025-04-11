@@ -186,3 +186,35 @@ nav a {
 .page-item.disabled .page-link {
   color: #aaa;
 }
+
+.btn-outline-danger {
+  border-color: #e76f51;
+  color: #e76f51;
+}
+
+.btn-outline-danger:hover {
+  background-color: #e76f51;
+  color: white;
+}
+
+.btn-outline-warning {
+  border-color: #f4a261;
+  color: #f4a261;
+}
+
+.btn-outline-warning:hover {
+  background-color: #f4a261;
+  color: white;
+}
+
+.btn-danger,
+.btn-warning {
+  color: white;
+}
+
+.card-img-top {
+  transition: transform 0.2s ease-in-out;
+}
+.card-img-top:hover {
+  transform: scale(1.02);
+}
