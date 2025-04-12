@@ -64,7 +64,7 @@
             {% endfor %}
           </select>
         
-          <button class="btn btn-foodie rounded-pill px-2" type="submit">🔍</button>
+          <button class="btn btn-foodie rounded-pill px-2">🔍</button>
         </form>
       </div>
     </div>
@@ -115,5 +115,13 @@
       © 2025 Eato. All Rights Reserved.
     </div>
   </footer>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+      tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+        new bootstrap.Tooltip(tooltipTriggerEl);
+      });
+    });
+  </script>
 </body>
 </html>

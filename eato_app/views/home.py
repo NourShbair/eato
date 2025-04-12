@@ -1,8 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
-from ..models import Recipe, MealType, Cuisine, AllergyTag, Like, Favorite
-
-from django.db.models import Count
+from ..models import Recipe, MealType, Cuisine, AllergyTag
+import random
 
 # @login_required
 def home(request):
@@ -12,9 +11,21 @@ def home(request):
     allergies = AllergyTag.objects.all()
     recent_recipes = Recipe.objects.order_by('-created_at')[:5]  # Latest 5 recipes
 
-    user_recipe_count = Recipe.objects.filter(created_by=user).count()
-    user_liked_count = Like.objects.filter(user=user).count()
-    user_saved_count = Favorite.objects.filter(user=user).count()
+
+
+    random_recipe = None
+    recipes = Recipe.objects.all()
+    if request.GET.get("random") == "1" and recipes.exists():
+        random_recipe = random.choice(recipes)
+
+    user_recipe_count = 0
+    user_liked_count = 0
+    user_saved_count = 0
+    
+    if user.is_authenticated:
+        user_recipe_count = Recipe.objects.filter(created_by=user).count()
+        user_liked_count = Recipe.objects.filter(likes=user).count()
+        user_saved_count = Recipe.objects.filter(favorites=user).count()
 
     context = {
         'meal_types': meal_types,
@@ -24,7 +35,10 @@ def home(request):
         'user_recipe_count': user_recipe_count,
         'user_liked_count': user_liked_count,
         'user_saved_count': user_saved_count,
+        'random_recipe': random_recipe,
+        'has_recipes': recipes.exists(),
     }
+
 
     return render(request, 'index.html', context)
 

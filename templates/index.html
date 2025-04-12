@@ -1,55 +1,71 @@
 {% extends "base.html" %}
+{% load static %}
 {% block content %}
+
 <div class="container py-5">
-  <h2 class="mb-4 section-title">Welcome {{ user.username }} 👋</h2>
+  {% if user.is_authenticated %}
+    <h2 class="mb-4 section-title">Welcome {{ user.username }} 👋</h2>
+    
+    <!-- User Stats -->
+    <div class="row mb-5">
+      <div class="col-md-4">
+        <div class="card card-foodie bg-light text-center p-4">
+          <h5 class="text-success">Recipes Posted 👩‍🍳</h5>
+          <p class="display-6">{{ user_recipe_count }}</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card card-foodie bg-light text-center p-4">
+          <h5 class="text-info">Recipes Liked ❤️</h5>
+          <p class="display-6">{{ user_liked_count }}</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card card-foodie bg-light text-center p-4">
+          <h5 class="text-warning">Recipes Saved ⭐</h5>
+          <p class="display-6">{{ user_saved_count }}</p>
+        </div>
+      </div>
+    </div>
+  {% endif %}
 
-  <!-- User Stats -->
-  <div class="row mb-5">
-    <div class="col-md-4">
-      <div class="card card-foodie bg-light text-center p-4">
-        <h5 class="text-success">Recipes Posted 👩‍🍳</h5>
-        <p class="display-6">{{ user_recipe_count }}</p>
-      </div>
+  <div class="container my-5">
+    <div class="text-center">
+      <h3 class="text-orange mb-3">🎲 Surprise Me with a Recipe</h3>
+      <form method="get">
+        <input type="hidden" name="random" value="1">
+        <button class="btn btn-foodie px-4 py-2" type="submit">Show Me a Random Recipe</button>
+      </form>
     </div>
-    <div class="col-md-4">
-      <div class="card card-foodie bg-light text-center p-4">
-        <h5 class="text-info">Recipes Liked ❤️</h5>
-        <p class="display-6">{{ user_liked_count }}</p>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="card card-foodie bg-light text-center p-4">
-        <h5 class="text-warning">Recipes Saved ⭐</h5>
-        <p class="display-6">{{ user_saved_count }}</p>
+  
+    <div class="row justify-content-center mt-4">
+      <div class="col-md-6">
+        <a href="{% if random_recipe %}{% url 'recipe_details' random_recipe.id %}{% else %}#{% endif %}">
+          <div class="card card-foodie shadow-sm">
+              <img src="{% if random_recipe %}{{ random_recipe.image.url }}{% else %}{% static 'images/default-random.png' %}{% endif %}"
+                  class="card-img-top"
+                  alt="{% if random_recipe %}{{ random_recipe.title }}{% else %}Default Recipe{% endif %}">
+            <div class="card-body text-center">
+              <h5 class="card-title">
+                {% if random_recipe %}
+                  {{ random_recipe.title }}
+                {% else %}
+                {% endif %}
+              </h5>
+              {% if random_recipe %}
+              {% endif %}
+            </div>
+          </div>
+        </a>
       </div>
     </div>
   </div>
-
-  <!-- Meal Types -->
-  <h3 class="section-title">Meal Types 🍽️</h3>
-  <div class="row mb-4">
-    {% for type in meal_types %}
-      <div class="col-6 col-md-3 mb-3">
-        <a href="{% url 'meal_type_recipes' type.id %}" class="btn btn-foodie w-100">{{ type.name }}</a>
-      </div>
-    {% endfor %}
-  </div>
-
-  <!-- Cuisines -->
-  <h3 class="section-title">Cuisines 🍲</h3>
-  <div class="row mb-4">
-    {% for cuisine in cuisines %}
-      <div class="col-6 col-md-3 mb-3">
-        <a href="{% url 'cuisine_recipes' cuisine.id %}" class="btn btn-foodie w-100">{{ cuisine.name }}</a>
-      </div>
-    {% endfor %}
-  </div>
-
+  
   <!-- Allergies -->
   <h3 class="section-title">Allergy-Friendly 🥛</h3>
   <div class="row mb-4">
     {% for allergy in allergies %}
-      <div class="col-6 col-md-3 mb-3">
+      <div class="col-6 col-md-4 mb-4">
         <a href="{% url 'allergy_recipes' allergy.id %}" class="btn btn-foodie w-100">{{ allergy.name }}</a>
       </div>
     {% endfor %}
@@ -60,10 +76,12 @@
   <div class="row">
     {% for recipe in recent_recipes %}
       <div class="col-md-6 mb-4">
-        <div class="card card-foodie p-3">
-          <h5>{{ recipe.title }}</h5>
-          <small class="text-muted">Added on {{ recipe.created_at|date:"M d, Y" }}</small>
-        </div>
+        <a href="{% url 'recipe_details' recipe.id %}">
+          <div class="card card-foodie p-3">
+            <h5>{{ recipe.title }}</h5>
+            <small class="text-muted">Added on {{ recipe.created_at|date:"M d, Y" }}</small>
+          </div>
+        </a>
       </div>
     {% empty %}
       <p class="text-muted">No delicious recipes yet.</p>

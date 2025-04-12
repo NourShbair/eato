@@ -218,3 +218,8 @@ nav a {
 .card-img-top:hover {
   transform: scale(1.02);
 }
+
+.card-img-top {
+  height: 250px;
+  object-fit: cover;
+}
