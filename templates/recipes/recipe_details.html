@@ -3,22 +3,33 @@
 <div class="container py-5">
   <div class="row">
     {% if user.is_authenticated %}
-      <div class="d-flex gap-3 mt-3">
-        <!-- Like button -->
-        <form method="POST" action="{% url 'toggle_like' recipe.id %}">
-          {% csrf_token %}
-          <button type="submit" class="btn btn-outline-danger">
-            ❤️ {% if user in recipe.likes.all %} Unlike {% else %} Like {% endif %} ({{ recipe.total_likes }})
-          </button>
-        </form>
-      
-        <!-- Save button -->
-        <form method="POST" action="{% url 'toggle_save' recipe.id %}">
-          {% csrf_token %}
-          <button type="submit" class="btn btn-outline-warning">
-            ⭐ {% if user in recipe.favorites.all %} Unsave {% else %} Save {% endif %} ({{ recipe.total_favorites }})
-          </button>
-        </form>
+      <div class="d-flex justify-content-between align-items-center mt-4 flex-wrap gap-2">
+    
+        <!-- Like + Save buttons (left side) -->
+        <div class="d-flex gap-2 flex-grow-1" style="max-width: 60%;">
+          <form method="POST" action="{% url 'toggle_like' recipe.id %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-outline-danger w-100">
+              ❤️ {% if user in recipe.likes.all %}Unlike{% else %}Like{% endif %} ({{ recipe.total_likes }})
+            </button>
+          </form>
+    
+          <form method="POST" action="{% url 'toggle_save' recipe.id %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-outline-warning w-100">
+              ⭐ {% if user in recipe.favorites.all %}Unsave{% else %}Save{% endif %} ({{ recipe.total_favorites }})
+            </button>
+          </form>
+        </div>
+    
+        <!-- Edit + Delete buttons (right side) -->
+        {% if user == recipe.created_by %}
+          <div class="d-flex gap-2">
+            <a href="{% url 'edit_recipe' recipe.id %}" class="btn btn-warning h-100">✏️ Edit</a>
+            <a href="{% url 'delete_recipe' recipe.id %}" class="btn btn-danger h-100">🗑️ Delete</a>
+          </div>
+        {% endif %}
+
       </div>
     {% endif %}
     <!-- Recipe Image -->

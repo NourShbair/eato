@@ -55,4 +55,4 @@ def add_recipe(request):
     else:
         form = RecipeForm()
 
-    return render(request, 'add_recipe.html', {'form': form})
+    return render(request, 'recipes/add_recipe.html', {'form': form})

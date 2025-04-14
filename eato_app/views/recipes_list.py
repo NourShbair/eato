@@ -8,6 +8,6 @@ def recipes_list(request):
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
-    return render(request, 'recipes_list.html', {
+    return render(request, 'recipes/recipes_list.html', {
         'page_obj': page_obj
     })

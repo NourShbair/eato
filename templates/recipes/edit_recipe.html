@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+
+{% block content %}
+<div class="container my-5">
+  <h3 class="text-orange mb-4">✏️ Edit Recipe - {{ recipe.title }}</h3>
+  <form method="POST" enctype="multipart/form-data" class="bg-white p-4 rounded shadow-sm">
+    {% csrf_token %}
+    {% for field in form %}
+      <div class="mb-3">
+        <label class="form-label">{{ field.label }}</label>
+        {{ field|add_class:"form-control" }}
+        {% if field.help_text %}
+          <div class="form-text">{{ field.help_text }}</div>
+        {% endif %}
+        {% for error in field.errors %}
+          <div class="text-danger small">{{ error }}</div>
+        {% endfor %}
+      </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-foodie">Save Changes</button>
+    <a href="{% url 'recipe_details' recipe.id %}" class="btn btn-secondary">Cancel</a>
+  </form>
+</div>
+{% endblock %}

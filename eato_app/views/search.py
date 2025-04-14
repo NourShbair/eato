@@ -39,4 +39,4 @@ def recipe_search(request):
         'selected_cuisine': cuisine_id,
     }
 
-    return render(request, 'search_results.html', context)
+    return render(request, 'recipes/search_results.html', context)
