@@ -128,11 +128,26 @@ form input, form textarea, form select, form button {
   cursor: pointer;
 }
 
+.remove_ingredient {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+#addIngredient {
+  background-color: #27ae60;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
 button[type="submit"] {
   background-color: #27ae60;
   color: white;
   border: none;
-  padding: 0.7rem 1.5rem;
+  /* padding: 0.7rem 1.5rem; */
   font-size: 1rem;
   cursor: pointer;
 }

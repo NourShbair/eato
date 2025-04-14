@@ -34,7 +34,7 @@ class Ingredient(models.Model):
 # Recipe model (Main model for storing recipes)
 class Recipe(models.Model):
     title = models.CharField(max_length=200)
-    description = models.TextField()
+    description = models.CharField(max_length=300)
     instructions = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)  # User who created the recipe

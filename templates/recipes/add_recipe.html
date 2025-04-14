@@ -15,12 +15,22 @@
               {{ form.title|add_class:"form-control" }}
             </div>
       
+            <!-- Description -->
+            <div class="col-6">
+              <label for="id_description" class="form-label">Description</label>
+              {{ form.description|add_class:"form-control" }}
+            </div>
+
             <!-- Image -->
             <div class="col-md-6">
               <label for="id_image" class="form-label">Recipe Image</label>
-              {{ form.image|add_class:"form-control" }}
+              {{ form.image }}
+              <div class="mt-2">
+                <img id="imagePreview" src="#" alt="Preview" style="display:none; max-height: 200px; border-radius: 10px;">
+              </div>
+              <button type="button" class="btn btn-sm btn-danger mt-2" style="display:none;" id="removeImageBtn">Remove Image</button>
             </div>
-      
+
             <!-- Meal Type -->
             <div class="col-md-4">
               <label for="id_meal_type" class="form-label">Meal Type</label>
@@ -40,16 +50,24 @@
             </div>
       
             <!-- Ingredients -->
-            {% comment %} <div class="col-12">
-              <label for="id_ingredients" class="form-label">Ingredients</label>
-              {{ form.ingredients|add_class:"form-control" }}
-              <div class="form-text">Include quantities & units, like "2 cups of flour"</div>
-            </div> {% endcomment %}
             <div class="col-12 ingredient-group">
-              <label for="id_ingredients" class="form-label">Ingredients</label>
-              <input type="text" name="ingredient_name" placeholder="Name">
-              <input type="number" name="ingredient_quantity" placeholder="Qty">
-              <input type="text" name="ingredient_unit" placeholder="Unit">
+              <label class="form-label">Ingredients</label>
+              <div id="ingredientsContainer">
+                <div class="row mb-2 ingredient-row">
+                  <div class="col-md-4">
+                    <input type="text" name="ingredient_name" class="form-control" placeholder="Name">
+                  </div>
+                  <div class="col-md-3">
+                    <input type="number" name="ingredient_quantity" class="form-control" placeholder="Quantity" step="any">
+                  </div>
+                  <div class="col-md-3">
+                    <input type="text" name="ingredient_unit" class="form-control" placeholder="Unit">
+                  </div>
+                  <div class="col-md-1 d-flex align-items-center">
+                    <button type="button" class="btn  btn-sm" id="addIngredient">+</button>
+                  </div>
+                </div>
+              </div>
             </div>
       
             <!-- Instructions -->
@@ -65,4 +83,54 @@
   </form>
 </div>
 
+<script>
+  const imageInput = document.getElementById('id_image');
+  const preview = document.getElementById('imagePreview');
+  const removeBtn = document.getElementById('removeImageBtn');
+
+  imageInput.addEventListener('change', () => {
+    const file = imageInput.files[0];
+    if (file) {
+      preview.src = URL.createObjectURL(file);
+      preview.style.display = 'block';
+      removeBtn.style.display = 'inline-block';
+    }
+  });
+
+  removeBtn.addEventListener('click', () => {
+    imageInput.value = '';
+    preview.style.display = 'none';
+    removeBtn.style.display = 'none';
+  });
+
+  const container = document.getElementById('ingredientsContainer');
+  const addBtn = document.getElementById('addIngredient');
+
+  addBtn.addEventListener('click', () => {
+    const row = document.createElement('div');
+    row.classList.add('row', 'mb-2', 'ingredient-row');
+    row.innerHTML = `
+      <div class="col-md-4">
+        <input type="text" name="ingredient_name" class="form-control" placeholder="Name">
+      </div>
+      <div class="col-md-3">
+        <input type="number" name="ingredient_quantity" class="form-control" placeholder="Quantity" step="any">
+      </div>
+      <div class="col-md-3">
+        <input type="text" name="ingredient_unit" class="form-control" placeholder="Unit">
+      </div>
+      <div class="col-md-1 d-flex align-items-center">
+        <button type="button" class="btn btn-sm remove-ingredient">−</button>
+      </div>
+    `;
+    container.appendChild(row);
+  });
+
+  container.addEventListener('click', function(e) {
+    if (e.target.classList.contains('remove-ingredient')) {
+      const row = e.target.closest('.ingredient-row');
+      row.remove();
+    }
+  });
+</script>
 {% endblock %}

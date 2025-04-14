@@ -37,6 +37,6 @@ def delete_recipe(request, recipe_id):
     if request.method == 'POST':
         recipe.delete()
         messages.success(request, "Recipe deleted.")
-        return redirect('recipe_list')
+        return redirect('recipes_list')
 
     return render(request, 'recipes/delete_recipe.html', {'recipe': recipe})
