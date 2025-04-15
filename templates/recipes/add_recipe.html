@@ -31,30 +31,30 @@
               <button type="button" class="btn btn-sm btn-danger mt-2" style="display:none;" id="removeImageBtn">Remove Image</button>
             </div>
 
+            <!-- Cuisine -->
+            <div class="col-md-6">
+              <label for="id_cuisines" class="form-label">Cuisine(s)</label>
+              {{ form.cuisine|add_class:"form-select" }}
+            </div>
+
             <!-- Meal Type -->
-            <div class="col-md-4">
+            <div class="col-md-6">
               <label for="id_meal_type" class="form-label">Meal Type</label>
               {{ form.meal_types|add_class:"form-select" }}
             </div>
 
             <!-- Allergies -->
-            <div class="col-md-4">
+            <div class="col-md-6">
               <label for="id_allergies" class="form-label">Allergies</label>
               {{ form.allergy_tags|add_class:"form-select" }}
             </div>
       
-            <!-- Cuisine -->
-            <div class="col-md-4">
-              <label for="id_cuisines" class="form-label">Cuisine(s)</label>
-              {{ form.cuisine|add_class:"form-select" }}
-            </div>
-      
             <!-- Ingredients -->
+            <label for="id_ingredients" class="form-label">Ingredients</label>
             <div class="col-12 ingredient-group">
-              <label class="form-label">Ingredients</label>
               <div id="ingredientsContainer">
                 <div class="row mb-2 ingredient-row">
-                  <div class="col-md-4">
+                  <div class="col-md-5">
                     <input type="text" name="ingredient_name" class="form-control" placeholder="Name">
                   </div>
                   <div class="col-md-3">

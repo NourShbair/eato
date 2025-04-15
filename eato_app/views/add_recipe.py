@@ -20,7 +20,6 @@ class RecipeForm(forms.ModelForm):
             'meal_types': forms.SelectMultiple(attrs={'class': 'form-select'}),
             'allergy_tags': forms.SelectMultiple(attrs={'class': 'form-select'}),
             'cuisines': forms.SelectMultiple(attrs={'class': 'form-select'}),
-            'ingredients': forms.Textarea(attrs={'rows': 3, 'class': 'form-control'}),
             'instructions': forms.Textarea(attrs={'rows': 5, 'class': 'form-control'}),
         }
 
@@ -28,9 +27,6 @@ class RecipeForm(forms.ModelForm):
 def add_recipe(request):
     if request.method == 'POST':
         form = RecipeForm(request.POST, request.FILES)
-        print("Form data:", request.POST)
-        print("Form:", form)
-        print("Form errors:", form.errors)
         if form.is_valid():
             recipe = form.save(commit=False)
             recipe.created_by = request.user
@@ -55,7 +51,6 @@ def add_recipe(request):
             messages.success(request, "Recipe created successfully!")
             return redirect('recipes_list')
     else:
-        print("Form is not valid")
         form = RecipeForm()
 
     return render(request, 'recipes/add_recipe.html', {'form': form})
