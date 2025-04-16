@@ -2,7 +2,17 @@
 {% block content %}
 <div class="container py-5">  
   <div class="container mt-4 d-flex justify-content-between align-items-center">
-    <h2 class="text-orange mb-0">📖 All Recipes</h2>
+    <h2 class="text-orange mb-0">
+      {% if request.GET.filter == 'mine' %}
+        👨‍🍳 My Recipes
+      {% elif request.GET.filter == 'liked' %}
+        ❤️ Liked Recipes
+      {% elif request.GET.filter == 'saved' %}
+        ⭐ Saved Recipes
+      {% else %}
+        📖 All Recipes
+      {% endif %}
+    </h2>
     {% if user.is_authenticated %}
       <a href="{% url 'add_recipe' %}" class="btn btn-foodie">
         + Add New Recipe

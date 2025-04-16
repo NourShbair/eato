@@ -9,23 +9,32 @@
     <!-- User Stats -->
     <div class="row mb-5">
       <div class="col-md-4">
-        <div class="card card-foodie bg-light text-center p-4">
-          <h5 class="text-success">Recipes Posted 👩‍🍳</h5>
-          <p class="display-6">{{ user_recipe_count }}</p>
-        </div>
+        <a href="{% url 'recipes_list' %}?filter=mine" class="text-decoration-none">
+          <div class="card card-foodie bg-light text-center p-4 h-100">
+            <h5 class="text-success">Recipes Posted 👩‍🍳</h5>
+            <p class="display-6 text-dark">{{ user_recipe_count }}</p>
+          </div>
+        </a>
       </div>
+    
       <div class="col-md-4">
-        <div class="card card-foodie bg-light text-center p-4">
-          <h5 class="text-info">Recipes Liked ❤️</h5>
-          <p class="display-6">{{ user_liked_count }}</p>
-        </div>
+        <a href="{% url 'recipes_list' %}?filter=liked" class="text-decoration-none">
+          <div class="card card-foodie bg-light text-center p-4 h-100">
+            <h5 class="text-info">Recipes Liked ❤️</h5>
+            <p class="display-6 text-dark">{{ user_liked_count }}</p>
+          </div>
+        </a>
       </div>
+    
       <div class="col-md-4">
-        <div class="card card-foodie bg-light text-center p-4">
-          <h5 class="text-warning">Recipes Saved ⭐</h5>
-          <p class="display-6">{{ user_saved_count }}</p>
-        </div>
+        <a href="{% url 'recipes_list' %}?filter=saved" class="text-decoration-none">
+          <div class="card card-foodie bg-light text-center p-4 h-100">
+            <h5 class="text-warning">Recipes Saved ⭐</h5>
+            <p class="display-6 text-dark">{{ user_saved_count }}</p>
+          </div>
+        </a>
       </div>
+    
     </div>
   {% endif %}
 
