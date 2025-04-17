@@ -17,11 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from eato_app.views.home import home, meal_type_recipes, cuisine_recipes, allergy_recipes
-from eato_app.views.recipes_list import recipes_list
-from eato_app.views.add_recipe import add_recipe
-from eato_app.views.signup import signup
-from eato_app.views.search import recipe_search
-from eato_app.views.recipe_details import recipe_details, edit_recipe, delete_recipe
+from eato_app.views.recipes.recipes_list import recipes_list
+from eato_app.views.recipes.add_recipe import add_recipe
+from eato_app.views.registration.signup import signup
+from eato_app.views.recipes.search import recipe_search
+from eato_app.views.recipes.recipe_details import recipe_details, edit_recipe, delete_recipe
 from eato_app.views.views import toggle_like, toggle_save, random_recipe
 from django.conf import settings
 from django.conf.urls.static import static
