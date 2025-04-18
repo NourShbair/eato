@@ -1,6 +1,5 @@
 body {
   background-color: #fff8f0;
-  font-family: 'Nunito', sans-serif;
   color: #333;
 }
 
@@ -21,12 +20,7 @@ body {
   color: white;
 }
 
-form {
-  background-color: #fff8f0;
-}
-
 h1, h2 {
-  font-family: 'Pacifico', cursive;
   color: #d2691e;
 }
 
@@ -66,7 +60,6 @@ h1, h2 {
 body {
   margin: 2rem;
   background-color: #f8f8f8;
-  font-family: 'Merriweather', serif;
 }
 
 .card-foodie {
@@ -98,16 +91,16 @@ h1, h2, h3 {
   color: #333;
 }
 
-h1, h2, h3, h4, h5 {
-  font-family: 'Quicksand', sans-serif;
-}
-
 form input, form textarea, form select, form button {
   display: block;
   margin: 0.5rem 0;
   padding: 0.5rem;
   width: 100%;
   max-width: 500px;
+}
+
+.search-form-element {
+max-width: 100%;
 }
 
 .ingredient-group {
@@ -239,14 +232,43 @@ nav a {
   object-fit: cover;
 }
 
-.ingredient-group{
+.ingredient-group {
   margin-top: 0 !important;
 }
 
-
-/* Media query: small, large or landscape phones (768px and down) */
-@media screen and (max-width: 768px) {
-.user-stats-box{
-  margin-bottom:10px;
+#mobileSearchBar {
+  transition: all 0.3s ease;
 }
+
+#searchBtn {
+width: 30%;
+}
+
+
+.mobile-search {
+  opacity: 0;
+  display: none;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.mobile-search.show {
+  opacity: 1;
+  display: inline;
+}
+
+
+/* Media query: small, large or landscape phones (991px and down) */
+@media screen and (max-width: 991px) {
+  .user-stats-box{
+    margin-bottom:10px;
+  }
+  .search-bar-mobile input,
+  .search-bar-mobile select,
+  .search-bar-mobile button {
+    font-size: 0.95rem;
+  }
+
+  #searchForm{
+  display: none !important;
+  }
 }

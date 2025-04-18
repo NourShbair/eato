@@ -19,17 +19,40 @@
   <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}">
   <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}">
 
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const toggleBtn = document.getElementById('toggleSearchBtn');
+      const searchBar = document.getElementById('mobileSearchBar');
+  
+      toggleBtn?.addEventListener('click', () => {
+        searchBar.classList.toggle('show');
+      });
+    });
+  </script>
+  
 </head>
-<body>
 
-  <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm sticky-top">
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
     <div class="container">
-      <a class="navbar-brand fs-3 fw-bold text-orange" href="{% url 'index' %}">Eato 🍽️</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarFoodie" aria-controls="navbarFoodie" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    
-      <div class="collapse navbar-collapse" id="navbarFoodie">
+      <a class="navbar-brand" href="{% url 'index' %}">Eato 🥢</a>
+
+      <!-- Right-side icons (burger + search) -->
+      <div class="d-flex align-items-center ms-auto">
+        <!-- Search Icon Button -->
+        <button class="btn btn-outline-secondary me-2 d-lg-none" id="toggleSearchBtn" type="button">
+          🔍
+        </button>
+
+        <!-- Burger Menu -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
+          aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+
+      <div class="collapse navbar-collapse" id="mainNavbar">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           <li class="nav-item">
             <a class="nav-link" href="{% url 'index' %}">Home</a>
@@ -53,7 +76,7 @@
           </li>
           {% endif %}
         </ul>
-        <form class="d-flex ms-auto" method="GET" action="{% url 'recipe_search' %}">
+        <form id="searchForm" class="d-flex ms-auto" method="GET" action="{% url 'recipe_search' %}">
           <input class="form-control me-2 rounded-pill" type="search" name="q" placeholder="Search" aria-label="Search">
         
           <select class="form-select me-2" name="category">
@@ -75,6 +98,37 @@
       </div>
     </div>
   </nav>
+
+  <!-- 🔍 Toggleable Search Bar -->
+  <div id="mobileSearchBar" class="mobile-search d-lg-none">
+    <div class="container py-3">
+      <form method="GET" action="{% url 'recipe_search' %}" class="row g-2">
+        <div class="col-12">
+          <input type="search" name="q" class="form-control search-form-element" placeholder="Search recipes...">
+        </div>
+        <div class="col-12">
+          <select class="form-select search-form-element" name="category">
+            <option value="">Meal Type</option>
+            {% for type in meal_types %}
+              <option value="{{ type.id }}">{{ type.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="col-12">
+          <select class="form-select search-form-element" name="cuisine">
+            <option value="">Cuisine</option>
+            {% for c in cuisines %}
+              <option value="{{ c.id }}">{{ c.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="col-12 d-flex justify-content-end">
+          <button id="searchBtn" class="btn btn-foodie">Search</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   {% comment %} {% if messages %}
     <div class="container mt-3">
       {% for message in messages %}
@@ -96,7 +150,7 @@
     <div class="container p-4">
       <div class="row">
         <div class="col-lg-6 col-md-12 mb-4">
-          <h5 class="text-orange fw-bold">Eato 🍲</h5>
+          <h5 class="text-orange fw-bold">Eato 🥢</h5>
           <p>
             Discover and share your favorite recipes from around the world. From cozy classics to trendy treats!
           </p>
