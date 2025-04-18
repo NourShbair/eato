@@ -242,3 +242,11 @@ nav a {
 .ingredient-group{
   margin-top: 0 !important;
 }
+
+
+/* Media query: small, large or landscape phones (768px and down) */
+@media screen and (max-width: 768px) {
+.user-stats-box{
+  margin-bottom:10px;
+}
+}
