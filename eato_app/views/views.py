@@ -32,3 +32,6 @@ def random_recipe(request):
     else:
         messages.warning(request, "No recipes available yet.")
         return redirect('home')
+    
+def crash_test(request):
+    raise Exception("Test 500 error")

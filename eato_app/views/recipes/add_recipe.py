@@ -17,8 +17,8 @@ class RecipeForm(forms.ModelForm):
             'instructions',
         ]
         widgets = {
-            'meal_types': forms.SelectMultiple(attrs={'class': 'form-select'}),
-            'allergy_tags': forms.SelectMultiple(attrs={'class': 'form-select'}),
+            'meal_types': forms.CheckboxSelectMultiple(),
+            'allergy_tags': forms.CheckboxSelectMultiple(),
             'cuisines': forms.SelectMultiple(attrs={'class': 'form-select'}),
             'instructions': forms.Textarea(attrs={'rows': 5, 'class': 'form-control'}),
         }

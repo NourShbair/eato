@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Page Not Found - Eato{% endblock %}
+
+{% block content %}
+<div class="container text-center py-5">
+  <h1 class="display-1 text-orange fw-bold">404</h1>
+  <p class="lead text-muted mb-4">Oops! The page you’re looking for doesn’t exist.</p>
+  <img src="{% static 'images/cupcake-error.gif' %}" alt="Oops!" class="img-fluid mb-4" style="max-height: 200px;">
+  <p class="mb-4">It might have been moved, renamed, or maybe it never existed — like that perfect soufflé 🍮</p>
+  <a href="{% url 'index' %}" class="btn btn-foodie">Go Back Home</a>
+</div>
+{% endblock %}

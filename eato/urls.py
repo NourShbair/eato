@@ -22,12 +22,11 @@ from eato_app.views.recipes.add_recipe import add_recipe
 from eato_app.views.registration.signup import signup
 from eato_app.views.recipes.search import recipe_search
 from eato_app.views.recipes.recipe_details import recipe_details, edit_recipe, delete_recipe
-from eato_app.views.views import toggle_like, toggle_save, random_recipe
+from eato_app.views.views import toggle_like, toggle_save, random_recipe, crash_test
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
-
 urlpatterns = [
     path('', home, name='index'),
     path('admin/', admin.site.urls),
@@ -46,5 +45,7 @@ urlpatterns = [
     path('random-recipe/', random_recipe, name='random_recipe'),
     path('recipes/<int:recipe_id>/edit/', edit_recipe, name='edit_recipe'),
     path('recipes/<int:recipe_id>/delete/', delete_recipe, name='delete_recipe'),
+    path('crash/', crash_test),
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+handler404 = 'eato_app.views.errors.custom_404_view'

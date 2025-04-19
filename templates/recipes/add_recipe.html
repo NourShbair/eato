@@ -11,19 +11,19 @@
 
             <!-- Title -->
             <div class="col-md-6">
-              <label for="id_title" class="form-label">Recipe Title</label>
+              <label for="id_title" class="form-label"><b>Recipe Title</b></label>
               {{ form.title|add_class:"form-control" }}
             </div>
       
             <!-- Description -->
-            <div class="col-6">
-              <label for="id_description" class="form-label">Description</label>
+            <div class="col-md-6">
+              <label for="id_description" class="form-label"><b>Description</b></label>
               {{ form.description|add_class:"form-control" }}
             </div>
 
             <!-- Image -->
             <div class="col-md-6">
-              <label for="id_image" class="form-label">Recipe Image</label>
+              <label for="id_image" class="form-label"><b>Recipe Image</b></label>
               {{ form.image }}
               <div class="mt-2">
                 <img id="imagePreview" src="#" alt="Preview" style="display:none; max-height: 200px; border-radius: 10px;">
@@ -33,37 +33,41 @@
 
             <!-- Cuisine -->
             <div class="col-md-6">
-              <label for="id_cuisines" class="form-label">Cuisine(s)</label>
+              <label for="id_cuisines" class="form-label"><b>Cuisine(s)</b></label>
               {{ form.cuisine|add_class:"form-select" }}
             </div>
 
             <!-- Meal Type -->
-            <div class="col-md-6">
-              <label for="id_meal_type" class="form-label">Meal Type</label>
-              {{ form.meal_types|add_class:"form-select" }}
+            <div class="col-6">
+              <label class="form-label"><b>Meal Types</b></label>
+              <div class="checkbox-group">
+                {{ form.meal_types }}
+              </div>
             </div>
 
             <!-- Allergies -->
-            <div class="col-md-6">
-              <label for="id_allergies" class="form-label">Allergies</label>
-              {{ form.allergy_tags|add_class:"form-select" }}
+            <div class="col-6">
+              <label class="form-label"><b>Allergy Info</b></label>
+              <div class="checkbox-group">
+                {{ form.allergy_tags }}
+              </div>
             </div>
       
             <!-- Ingredients -->
-            <label for="id_ingredients" class="form-label">Ingredients</label>
+            <label for="id_ingredients" class="form-label"><b>Ingredients</b></label>
             <div class="col-12 ingredient-group">
               <div id="ingredientsContainer">
                 <div class="row mb-2 ingredient-row">
-                  <div class="col-md-5">
+                  <div class="col-12 col-md-4">
                     <input type="text" name="ingredient_name" class="form-control" placeholder="Name">
                   </div>
-                  <div class="col-md-3">
+                  <div class="col-4 col-md-3">
                     <input type="number" name="ingredient_quantity" class="form-control" placeholder="Quantity" step="any">
                   </div>
-                  <div class="col-md-3">
+                  <div class="col-4 col-md-3">
                     <input type="text" name="ingredient_unit" class="form-control" placeholder="Unit">
                   </div>
-                  <div class="col-md-1 d-flex align-items-center">
+                  <div class="col-4 col-md-2 d-flex align-items-center">
                     <button type="button" class="btn  btn-sm" id="addIngredient">+</button>
                   </div>
                 </div>
@@ -72,7 +76,7 @@
       
             <!-- Instructions -->
             <div class="col-12">
-              <label for="id_instructions" class="form-label">Instructions</label>
+              <label for="id_instructions" class="form-label"><b>Instructions</b></label>
               {{ form.instructions|add_class:"form-control" }}
             </div>
 
@@ -110,16 +114,16 @@
     const row = document.createElement('div');
     row.classList.add('row', 'mb-2', 'ingredient-row');
     row.innerHTML = `
-      <div class="col-md-5">
+      <div class="col-12 col-md-4">
         <input type="text" name="ingredient_name" class="form-control" placeholder="Name">
       </div>
-      <div class="col-md-3">
+      <div class="col-4 col-md-3">
         <input type="number" name="ingredient_quantity" class="form-control" placeholder="Quantity" step="any">
       </div>
-      <div class="col-md-3">
+      <div class="col-4 col-md-3">
         <input type="text" name="ingredient_unit" class="form-control" placeholder="Unit">
       </div>
-      <div class="col-md-1 d-flex align-items-center">
+      <div class="col-4 col-md-2 d-flex align-items-center">
         <button type="button" class="btn btn-sm remove-ingredient">−</button>
       </div>
     `;
