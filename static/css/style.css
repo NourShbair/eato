@@ -4,11 +4,11 @@ body {
 }
 
 .text-orange {
-  color: #d2691e;
+  color: #b90049;
 }
 
 .btn-foodie {
-  background-color: #f4a261;
+  background-color: #eb4a8a;
   color: white;
   border-radius: 30px;
   font-weight: 500;
@@ -16,7 +16,7 @@ body {
 }
 
 .btn-foodie:hover {
-  background-color: #e76f51;
+  background-color: #f86da5;
   color: white;
 }
 
@@ -49,7 +49,7 @@ h1, h2 {
 }
 
 .recipe-tags span {
-  background-color: #f4a261;
+  background-color: #e75992;
   color: white;
   font-size: 0.75rem;
   border-radius: 12px;
@@ -75,9 +75,9 @@ body {
 
 .section-title {
   font-weight: bold;
-  color: #d2691e;
+  color: #b90049;
   margin-bottom: 1rem;
-  border-bottom: 2px solid #f3d3a1;
+  border-bottom: 2px solid #f093b8;
   display: inline-block;
   padding-bottom: 0.3rem;
 }
@@ -114,7 +114,7 @@ max-width: 100%;
 }
 
 .ingredient-group button {
-  background-color: #e74c3c;
+  background-color: #b90049;
   color: white;
   border: none;
   padding: 0.5rem 1rem;
@@ -122,7 +122,7 @@ max-width: 100%;
 }
 
 .remove_ingredient {
-  background-color: #e74c3c;
+  background-color: #b90049;
   color: white;
   border: none;
   padding: 0.5rem 1rem;
@@ -151,8 +151,8 @@ a {
 }
 
 input[type="search"] {
-  background-color: #fffaf1;
-  border: 1px solid #f4a261;
+  /* background-color: #fffaf1; */
+  border: 1px solid #e16c9b;
 }
 
 nav {
@@ -164,8 +164,8 @@ nav a {
 }
 
 .form-select {
-  background-color: #fffaf1;
-  border-color: #f4a261;
+  /* background-color: #fffaf1; */
+  border-color: #e24785;
 }
 
 
@@ -182,12 +182,12 @@ nav a {
 
 .page-link {
   border-radius: 20px;
-  color: #d2691e;
+  color: #b90049;
 }
 
 .page-item.active .page-link {
-  background-color: #f4a261;
-  border-color: #f4a261;
+  background-color: #e24785;
+  border-color: #e24785;
   color: white;
 }
 
@@ -196,22 +196,22 @@ nav a {
 }
 
 .btn-outline-danger {
-  border-color: #e76f51;
-  color: #e76f51;
+  border-color: #b90049;
+  color: #b90049;
 }
 
 .btn-outline-danger:hover {
-  background-color: #e76f51;
+  background-color: #e24785;
   color: white;
 }
 
 .btn-outline-warning {
-  border-color: #f4a261;
-  color: #f4a261;
+  border-color: #ed5693;
+  color: #ed5693;
 }
 
 .btn-outline-warning:hover {
-  background-color: #f4a261;
+  background-color: #e24785;
   color: white;
 }
 

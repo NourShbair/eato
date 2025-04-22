@@ -2,6 +2,7 @@
 {% block content %}
 <div class="container py-5">  
   <div class="container mt-4 d-flex justify-content-between align-items-center">
+    <p>{{selected_allergy}}</p>
     <h2 class="text-orange mb-0">
       {% if request.GET.filter == 'mine' %}
         👨‍🍳 My Recipes
@@ -9,6 +10,8 @@
         ❤️ Liked Recipes
       {% elif request.GET.filter == 'saved' %}
         ⭐ Saved Recipes
+      {% elif selected_allergy %}
+        Recipes Without {{ selected_allergy.name }}
       {% else %}
         📖 All Recipes
       {% endif %}

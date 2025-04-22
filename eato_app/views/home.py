@@ -57,7 +57,7 @@ def cuisine_recipes(request, cuisine_id):
 def allergy_recipes(request, allergy_id):
     allergy = get_object_or_404(AllergyTag, id=allergy_id)
     recipes = Recipe.objects.filter(allergy_tags=allergy)
-    return render(request, 'recipes_list.html', {
+    return render(request, 'recipes/recipes_list.html', {
         'recipes': recipes,
         'filter_type': f"Allergy: {allergy.name}"
     })
