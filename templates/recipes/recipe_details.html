@@ -34,7 +34,7 @@
     {% endif %}
     <!-- Recipe Image -->
     <div class="col-md-6 mb-4">
-      <img src="{{ recipe.image.url }}" class="img-fluid rounded shadow" alt="{{ recipe.title }}">
+      <img src="{{ recipe.image.url }}" class="img-fluid rounded sßhadow" alt="{{ recipe.title }}">
     </div>
 
     <!-- Recipe Info -->
@@ -42,7 +42,15 @@
       <h2 class="text-orange">{{ recipe.title }}</h2>
       <p class="text-muted">Created by <strong>{{ recipe.created_by.username }}</strong> | {{ recipe.created_at|date:"M d, Y" }}</p>
 
-      <p><strong>Meal Type:</strong> {{ recipe.meal_types.name }}</p>
+      <p><strong>Meal Type:</strong>
+        {% if recipe.meal_types.all %}
+          {% for type in recipe.meal_types.all %}
+            {{ type.name }}{% if not forloop.last %}, {% endif %}
+          {% endfor %}
+        {% else %}
+          None
+        {% endif %}
+      </p>
       <p><strong>Cuisine:</strong> {{ recipe.cuisine.name }}</p>
 
       {% if recipe.allergies.all %}
