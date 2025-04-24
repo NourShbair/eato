@@ -39,7 +39,7 @@ class Recipe(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE)  # User who created the recipe
     cuisine = models.ForeignKey(Cuisine, on_delete=models.SET_NULL, null=True)
-    image = CloudinaryField('image', null=True, blank=True)  # Store images on Cloudinary
+    image = CloudinaryField('image')  # Store images on Cloudinary
     likes = models.ManyToManyField(User, related_name='liked_recipes', blank=True)
     favorites = models.ManyToManyField(User, related_name='favorite_recipes', blank=True)
     

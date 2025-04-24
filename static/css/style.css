@@ -95,10 +95,12 @@ form input, form textarea, form select, form button {
   display: block;
   margin: 0.5rem 0;
   padding: 0.5rem;
-  width: 100%;
   max-width: 500px;
 }
 
+#searchBtnLg{
+  width: 100%;
+}
 .search-form-element {
 max-width: 100%;
 }
@@ -152,7 +154,7 @@ a {
 
 input[type="search"] {
   /* background-color: #fffaf1; */
-  border: 1px solid #e16c9b;
+  border: 1px solid #acacac;
 }
 
 nav {
@@ -165,7 +167,7 @@ nav a {
 
 .form-select {
   /* background-color: #fffaf1; */
-  border-color: #e24785;
+  border-color: #acacac;
 }
 
 

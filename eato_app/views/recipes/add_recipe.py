@@ -22,6 +22,11 @@ class RecipeForm(forms.ModelForm):
             'cuisines': forms.SelectMultiple(attrs={'class': 'form-select'}),
             'instructions': forms.Textarea(attrs={'rows': 5, 'class': 'form-control'}),
         }
+    def clean_image(self):
+        image = self.cleaned_data.get('image')
+        if not image:
+            raise forms.ValidationError("An image is required for your recipe.")
+        return image
 
 @login_required
 def add_recipe(request):

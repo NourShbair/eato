@@ -43,7 +43,7 @@ def signup(request):
             user = form.save()
             login(request, user)  # Auto-login after registration
             messages.success(request, "You've signed up successfully and are now logged in. Welcome to Eato!")
-            return render(request, 'registration/signup.html', {'form': form})
+            return redirect('index')
     else:
         form = SignupForm()
 
