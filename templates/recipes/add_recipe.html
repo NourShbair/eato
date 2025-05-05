@@ -1,85 +1,100 @@
 {% extends 'base.html' %}
 {% load static %}
-{% load widget_tweaks %}
+{% load widget_tweaks %}  <!-- Load widget_tweaks for form field customization -->
+
 {% block content %}
-
 <div class="container my-5">
+  <!-- Page Header -->
   <h2 class="text-orange mb-4">➕ Add New Recipe</h2>
+
+  <!-- Recipe Form -->
+  <!-- enctype="multipart/form-data" is required for file uploads -->
   <form method="POST" enctype="multipart/form-data" class="bg-white p-4 rounded shadow-sm">
-    {% csrf_token %}
-    <div class="row g-3">
+    {% csrf_token %}  <!-- Django CSRF protection token -->
+    <div class="row g-3">  <!-- Bootstrap grid with gutters -->
 
-            <!-- Title -->
-            <div class="col-md-6">
-              <label for="id_title" class="form-label"><b>Recipe Title</b></label>
-              {{ form.title|add_class:"form-control" }}
-            </div>
+      <!-- Recipe Title Field -->
+      <div class="col-md-6">
+        <label for="id_title" class="form-label"><b>Recipe Title</b></label>
+        {{ form.title|add_class:"form-control" }}  <!-- Apply Bootstrap form-control class -->
+      </div>
       
-            <!-- Description -->
-            <div class="col-md-6">
-              <label for="id_description" class="form-label"><b>Description</b></label>
-              {{ form.description|add_class:"form-control" }}
-            </div>
+      <!-- Recipe Description Field -->
+      <div class="col-md-6">
+        <label for="id_description" class="form-label"><b>Description</b></label>
+        {{ form.description|add_class:"form-control" }}
+      </div>
 
-            <!-- Image -->
-            <div class="col-md-6">
-              <label for="id_image" class="form-label"><b>Recipe Image</b></label>
-              {{ form.image }}
-              <div class="mt-2">
-                <img id="imagePreview" src="#" alt="Preview" style="display:none; max-height: 200px; border-radius: 10px;">
-              </div>
-              <button type="button" class="btn btn-sm btn-danger mt-2" style="display:none;" id="removeImageBtn">Remove Image</button>
-            </div>
+      <!-- Recipe Image Upload Field -->
+      <div class="col-md-6">
+        <label for="id_image" class="form-label"><b>Recipe Image</b></label>
+        {{ form.image }}  <!-- File input field -->
+        <!-- Image Preview Container -->
+        <div class="mt-2">
+          <img id="imagePreview" src="#" alt="Preview" 
+               style="display:none; max-height: 200px; border-radius: 10px;">
+        </div>
+        <!-- Remove Image Button (hidden by default) -->
+        <button type="button" class="btn btn-sm btn-danger mt-2" 
+                style="display:none;" id="removeImageBtn">Remove Image</button>
+      </div>
 
-            <!-- Cuisine -->
-            <div class="col-md-6">
-              <label for="id_cuisines" class="form-label"><b>Cuisine(s)</b></label>
-              {{ form.cuisine|add_class:"form-select" }}
-            </div>
+      <!-- Cuisine Selection Field -->
+      <div class="col-md-6">
+        <label for="id_cuisines" class="form-label"><b>Cuisine(s)</b></label>
+        {{ form.cuisine|add_class:"form-select" }}  <!-- Apply Bootstrap form-select class -->
+      </div>
 
-            <!-- Meal Type -->
-            <div class="col-6">
-              <label class="form-label"><b>Meal Types</b></label>
-              <div class="checkbox-group">
-                {{ form.meal_types }}
-              </div>
-            </div>
+      <!-- Meal Types Selection -->
+      <div class="col-6">
+        <label class="form-label"><b>Meal Types</b></label>
+        <div class="checkbox-group">
+          {{ form.meal_types }}  <!-- Checkbox group for meal types -->
+        </div>
+      </div>
 
-            <!-- Allergies -->
-            <div class="col-6">
-              <label class="form-label"><b>Allergy Info</b></label>
-              <div class="checkbox-group">
-                {{ form.allergy_tags }}
-              </div>
-            </div>
+      <!-- Allergy Tags Selection -->
+      <div class="col-6">
+        <label class="form-label"><b>Allergy Info</b></label>
+        <div class="checkbox-group">
+          {{ form.allergy_tags }}  <!-- Checkbox group for allergy tags -->
+        </div>
+      </div>
       
-            <!-- Ingredients -->
-            <label for="id_ingredients" class="form-label"><b>Ingredients</b></label>
-            <div class="col-12 ingredient-group">
-              <div id="ingredientsContainer">
-                <div class="row mb-2 ingredient-row">
-                  <div class="col-12 col-md-4">
-                    <input type="text" name="ingredient_name" class="form-control" placeholder="Name">
-                  </div>
-                  <div class="col-4 col-md-3">
-                    <input type="number" name="ingredient_quantity" class="form-control" placeholder="Quantity" step="any">
-                  </div>
-                  <div class="col-4 col-md-3">
-                    <input type="text" name="ingredient_unit" class="form-control" placeholder="Unit">
-                  </div>
-                  <div class="col-4 col-md-2 d-flex align-items-center">
-                    <button type="button" class="btn  btn-sm" id="addIngredient">+</button>
-                  </div>
-                </div>
-              </div>
+      <!-- Ingredients Section -->
+      <label for="id_ingredients" class="form-label"><b>Ingredients</b></label>
+      <div class="col-12 ingredient-group">
+        <div id="ingredientsContainer">
+          <!-- Initial Ingredient Row -->
+          <div class="row mb-2 ingredient-row">
+            <!-- Ingredient Name Input -->
+            <div class="col-12 col-md-4">
+              <input type="text" name="ingredient_name" class="form-control" placeholder="Name">
             </div>
+            <!-- Ingredient Quantity Input -->
+            <div class="col-4 col-md-3">
+              <input type="number" name="ingredient_quantity" class="form-control" 
+                     placeholder="Quantity" step="any">
+            </div>
+            <!-- Ingredient Unit Input -->
+            <div class="col-4 col-md-3">
+              <input type="text" name="ingredient_unit" class="form-control" placeholder="Unit">
+            </div>
+            <!-- Add Ingredient Button -->
+            <div class="col-4 col-md-2 d-flex align-items-center">
+              <button type="button" class="btn btn-sm" id="addIngredient">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
       
-            <!-- Instructions -->
-            <div class="col-12">
-              <label for="id_instructions" class="form-label"><b>Instructions</b></label>
-              {{ form.instructions|add_class:"form-control" }}
-            </div>
+      <!-- Cooking Instructions Field -->
+      <div class="col-12">
+        <label for="id_instructions" class="form-label"><b>Instructions</b></label>
+        {{ form.instructions|add_class:"form-control" }}
+      </div>
 
+      <!-- Submit Button -->
       <div class="col-12 mt-3">
         <button type="submit" class="btn btn-foodie px-4">Submit Recipe</button>
       </div>
@@ -87,38 +102,48 @@
   </form>
 </div>
 
+<!-- JavaScript for Form Functionality -->
 <script>
+  // Image Preview Functionality
   const imageInput = document.getElementById('id_image');
   const preview = document.getElementById('imagePreview');
   const removeBtn = document.getElementById('removeImageBtn');
 
+  // Handle image selection
   imageInput.addEventListener('change', () => {
     const file = imageInput.files[0];
     if (file) {
+      // Show image preview and remove button
       preview.src = URL.createObjectURL(file);
       preview.style.display = 'block';
       removeBtn.style.display = 'inline-block';
     }
   });
 
+  // Handle image removal
   removeBtn.addEventListener('click', () => {
+    // Clear image input and hide preview
     imageInput.value = '';
     preview.style.display = 'none';
     removeBtn.style.display = 'none';
   });
 
+  // Dynamic Ingredients Functionality
   const container = document.getElementById('ingredientsContainer');
   const addBtn = document.getElementById('addIngredient');
 
+  // Add new ingredient row
   addBtn.addEventListener('click', () => {
     const row = document.createElement('div');
     row.classList.add('row', 'mb-2', 'ingredient-row');
+    // HTML template for new ingredient row
     row.innerHTML = `
       <div class="col-12 col-md-4">
         <input type="text" name="ingredient_name" class="form-control" placeholder="Name">
       </div>
       <div class="col-4 col-md-3">
-        <input type="number" name="ingredient_quantity" class="form-control" placeholder="Quantity" step="any">
+        <input type="number" name="ingredient_quantity" class="form-control" 
+               placeholder="Quantity" step="any">
       </div>
       <div class="col-4 col-md-3">
         <input type="text" name="ingredient_unit" class="form-control" placeholder="Unit">
@@ -130,6 +155,7 @@
     container.appendChild(row);
   });
 
+  // Remove ingredient row
   container.addEventListener('click', function(e) {
     if (e.target.classList.contains('remove-ingredient')) {
       const row = e.target.closest('.ingredient-row');

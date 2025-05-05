@@ -1,102 +1,144 @@
 {% extends "base.html" %}
 {% block content %}
+<!-- Main container with vertical padding -->
 <div class="container py-5">  
-  <div class="container mt-4 d-flex justify-content-between align-items-center">
-    <p>{{selected_allergy}}</p>
-    <h2 class="text-orange mb-0">
-      {% if request.GET.filter == 'mine' %}
-        👨‍🍳 My Recipes
-      {% elif request.GET.filter == 'liked' %}
-        ❤️ Liked Recipes
-      {% elif request.GET.filter == 'saved' %}
-        ⭐ Saved Recipes
-      {% elif selected_allergy %}
-        Recipes Without {{ selected_allergy.name }}
-      {% else %}
-        📖 All Recipes
-      {% endif %}
-    </h2>
-    {% if user.is_authenticated %}
-      <a href="{% url 'add_recipe' %}" class="btn btn-foodie">
-        + Add New Recipe
-      </a>
-    {% endif %}
-  </div>
-  <hr>
-  <div class="row">
-    {% for recipe in page_obj %}
-      <div class="col-md-4 mb-4">
-        <a href="{% url 'recipe_details' recipe.id %}">
-          <div class="card h-100 shadow-sm">
-            <img src="{{ recipe.image.url }}" class="card-img-top" alt="{{ recipe.title }}">
-            <div class="card-body">
-              <h5 class="card-title">{{ recipe.title }}</h5>
-              <p class="card-text">{{ recipe.description|truncatewords:20 }}</p>
-              <!-- Action Buttons Row -->
-              {% if user.is_authenticated %}
-                <div class="d-flex justify-content-between align-items-center mt-3 gap-2">
-                <!-- Like Button -->
-                <form method="POST" action="{% url 'toggle_like' recipe.id %}" class="flex-fill text-center">
-                  {% csrf_token %}
-                  <button type="submit" class="btn btn-sm w-100 {% if user in recipe.likes.all %}btn-danger{% else %}btn-outline-danger{% endif %}"
-                          data-bs-toggle="tooltip"
-                          data-bs-placement="top"
-                          title="{% if user in recipe.likes.all %}Unlike{% else %}Like this recipe{% endif %}">
-                    ❤️ {{ recipe.likes.count }}
-                  </button>
-                </form>
+    <!-- Header container with flex layout -->
+    <div class="container mt-4 d-flex justify-content-between align-items-center">
+        <!-- Dynamic header text based on current filter -->
+        <h2 class="text-orange mb-0">
+            {% if request.GET.filter == 'mine' %}
+                👨‍🍳 My Recipes
+            {% elif request.GET.filter == 'liked' %}
+                ❤️ Liked Recipes
+            {% elif request.GET.filter == 'saved' %}
+                ⭐ Saved Recipes
+            {% elif selected_allergy %}
+                Recipes Without {{ selected_allergy.name }}
+            {% else %}
+                📖 All Recipes
+            {% endif %}
+        </h2>
 
-                <!-- Save Button -->
-                <form method="POST" action="{% url 'toggle_save' recipe.id %}" class="flex-fill text-center">
-                  {% csrf_token %}
-                  <button type="submit" class="btn btn-sm w-100 {% if user in recipe.favorites.all %}btn-warning{% else %}btn-outline-warning{% endif %}"
-                          data-bs-toggle="tooltip"
-                          data-bs-placement="top"
-                          title="{% if user in recipe.favorites.all %}Unsave{% else %}Save to favorites{% endif %}">
-                    ⭐ {{ recipe.favorites.count }}
-                  </button>
-                </form>
-
-                </div>
-              {% endif %}
-            </div>
-          </div>
-        </a>
-      </div>
-    {% empty %}
-      <p>No recipes available.</p>
-    {% endfor %}
-  </div>
-
-  <!-- Pagination Controls -->
-  <nav aria-label="Page navigation" class="mt-4">
-    <ul class="pagination justify-content-center">
-      {% if page_obj.has_previous %}
-        <li class="page-item">
-          <a class="page-link" href="?q={{ request.GET.q }}&page={{ page_obj.previous_page_number }}">Previous</a>
-        </li>
-      {% else %}
-        <li class="page-item disabled"><span class="page-link">Previous</span></li>
-      {% endif %}
-
-      {% for num in page_obj.paginator.page_range %}
-        {% if page_obj.number == num %}
-          <li class="page-item active"><span class="page-link">{{ num }}</span></li>
-        {% else %}
-          <li class="page-item">
-            <a class="page-link" href="?q={{ request.GET.q }}&page={{ num }}">{{ num }}</a>
-          </li>
+        <!-- Add Recipe button (visible only to authenticated users) -->
+        {% if user.is_authenticated %}
+            <a href="{% url 'add_recipe' %}" class="btn btn-foodie">
+                + Add New Recipe
+            </a>
         {% endif %}
-      {% endfor %}
+    </div>
 
-      {% if page_obj.has_next %}
-        <li class="page-item">
-          <a class="page-link" href="?q={{ request.GET.q }}&page={{ page_obj.next_page_number }}">Next</a>
-        </li>
-      {% else %}
-        <li class="page-item disabled"><span class="page-link">Next</span></li>
-      {% endif %}
-    </ul>
-  </nav>
+    <hr>  <!-- Horizontal divider -->
+
+    <!-- Recipe grid container -->
+    <div class="row">
+        <!-- Loop through paginated recipes -->
+        {% for recipe in page_obj %}
+            <!-- Recipe card column (4 columns on medium+ screens) -->
+            <div class="col-md-4 mb-4">
+                <!-- Recipe card link -->
+                <a href="{% url 'recipe_details' recipe.id %}">
+                    <!-- Card with full height and subtle shadow -->
+                    <div class="card h-100 shadow-sm">
+                        <!-- Recipe image -->
+                        <img src="{{ recipe.image.url }}" 
+                             class="card-img-top" 
+                             alt="{{ recipe.title }}">
+                        
+                        <!-- Card body with recipe details -->
+                        <div class="card-body">
+                            <h5 class="card-title">{{ recipe.title }}</h5>
+                            <!-- Truncated description (20 words) -->
+                            <p class="card-text">{{ recipe.description|truncatewords:20 }}</p>
+
+                            <!-- Action Buttons (for authenticated users) -->
+                            {% if user.is_authenticated %}
+                                <div class="d-flex justify-content-between align-items-center mt-3 gap-2">
+                                    <!-- Like Button Form -->
+                                    <form method="POST" 
+                                          action="{% url 'toggle_like' recipe.id %}" 
+                                          class="flex-fill text-center">
+                                        {% csrf_token %}
+                                        <button type="submit" 
+                                                class="btn btn-sm w-100 {% if user in recipe.likes.all %}btn-danger{% else %}btn-outline-danger{% endif %}"
+                                                data-bs-toggle="tooltip"
+                                                data-bs-placement="top"
+                                                title="{% if user in recipe.likes.all %}Unlike{% else %}Like this recipe{% endif %}">
+                                            ❤️ {{ recipe.likes.count }}
+                                        </button>
+                                    </form>
+
+                                    <!-- Save Button Form -->
+                                    <form method="POST" 
+                                          action="{% url 'toggle_save' recipe.id %}" 
+                                          class="flex-fill text-center">
+                                        {% csrf_token %}
+                                        <button type="submit" 
+                                                class="btn btn-sm w-100 {% if user in recipe.favorites.all %}btn-warning{% else %}btn-outline-warning{% endif %}"
+                                                data-bs-toggle="tooltip"
+                                                data-bs-placement="top"
+                                                title="{% if user in recipe.favorites.all %}Unsave{% else %}Save to favorites{% endif %}">
+                                            ⭐ {{ recipe.favorites.count }}
+                                        </button>
+                                    </form>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% empty %}
+            <!-- Displayed when no recipes are found -->
+            <p>No recipes available.</p>
+        {% endfor %}
+    </div>
+
+    <!-- Pagination Controls -->
+    <nav aria-label="Page navigation" class="mt-4">
+        <ul class="pagination justify-content-center">
+            <!-- Previous Page Link -->
+            {% if page_obj.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" 
+                       href="?q={{ request.GET.q }}&page={{ page_obj.previous_page_number }}">
+                        Previous
+                    </a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <span class="page-link">Previous</span>
+                </li>
+            {% endif %}
+
+            <!-- Page Numbers -->
+            {% for num in page_obj.paginator.page_range %}
+                {% if page_obj.number == num %}
+                    <li class="page-item active">
+                        <span class="page-link">{{ num }}</span>
+                    </li>
+                {% else %}
+                    <li class="page-item">
+                        <a class="page-link" 
+                           href="?q={{ request.GET.q }}&page={{ num }}">
+                            {{ num }}
+                        </a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+
+            <!-- Next Page Link -->
+            {% if page_obj.has_next %}
+                <li class="page-item">
+                    <a class="page-link" 
+                       href="?q={{ request.GET.q }}&page={{ page_obj.next_page_number }}">
+                        Next
+                    </a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <span class="page-link">Next</span>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
 </div>
 {% endblock %}

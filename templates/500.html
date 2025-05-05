@@ -1,13 +1,36 @@
 {% extends "base.html" %}
 {% load static %}
+
+<!-- Custom page title for browser tab and SEO -->
 {% block title %}Something went wrong - Eato{% endblock %}
 
 {% block content %}
+<!-- Main container with center alignment and vertical padding -->
 <div class="container text-center py-5">
-  <h1 class="display-1 text-orange fw-bold">500</h1>
-  <p class="lead text-muted mb-4">Yikes! Something went wrong on our side.</p>
-  <img src="{% static 'images/cupcake-error.gif' %}" alt="Oops!" class="img-fluid mb-4" style="max-height: 200px;">
-  <p class="mb-4">We burned the cookies 🍪 or the oven caught fire 🔥<br>Try refreshing or come back later.</p>
-  <a href="{% url 'index' %}" class="btn btn-foodie">Go Home Safely</a>
+    <!-- Error code heading with brand styling -->
+    <h1 class="display-1 text-orange fw-bold">500</h1>
+
+    <!-- Primary error message with muted styling -->
+    <p class="lead text-muted mb-4">
+        Yikes! Something went wrong on our side.
+    </p>
+
+    <!-- Error illustration - animated GIF -->
+    <img src="{% static 'images/cupcake-error.gif' %}" 
+         alt="Oops!" 
+         class="img-fluid mb-4"  <!-- Responsive image with bottom margin -->
+         style="max-height: 200px;">  <!-- Limit image height -->
+
+    <!-- Friendly error message with food-themed humor -->
+    <p class="mb-4">
+        We burned the cookies 🍪 or the oven caught fire 🔥<br>
+        Try refreshing or come back later.
+    </p>
+
+    <!-- Home navigation button with brand styling -->
+    <a href="{% url 'index' %}" 
+       class="btn btn-foodie">  <!-- Custom brand button class -->
+        Go Home Safely
+    </a>
 </div>
 {% endblock %}

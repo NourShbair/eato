@@ -1,12 +1,28 @@
 {% extends "base.html" %}
 {% block content %}
+<!-- Main container with vertical margin and center alignment -->
 <div class="container my-5 text-center">
+  <!-- Delete confirmation heading with custom orange text color -->
   <h3 class="text-orange">Are you sure you want to delete this recipe?</h3>
+  
+  <!-- Display recipe title in larger text -->
   <p class="lead">{{ recipe.title }}</p>
+  
+  <!-- Delete confirmation form -->
   <form method="POST">
-    {% csrf_token %}
-    <button type="submit" class="btn btn-danger">Yes, Delete</button>
-    <a href="{% url 'recipe_details' recipe.id %}" class="btn btn-secondary">Cancel</a>
+    {% csrf_token %}  <!-- Django CSRF protection token -->
+    
+    <!-- Action buttons container -->
+    <!-- Delete button - Bootstrap danger style -->
+    <button type="submit" class="btn btn-danger">
+      Yes, Delete
+    </button>
+    
+    <!-- Cancel button - Bootstrap secondary style -->
+    <!-- Links back to recipe details page using Django URL template tag -->
+    <a href="{% url 'recipe_details' recipe.id %}" class="btn btn-secondary">
+      Cancel
+    </a>
   </form>
 </div>
 {% endblock %}

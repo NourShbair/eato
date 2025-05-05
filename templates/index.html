@@ -75,7 +75,7 @@
   <div class="row mb-4">
     {% for allergy in allergies %}
       <div class="col-6 col-md-4 mb-4">
-        <a href="{% url 'allergy_recipes' allergy.id %}" class="btn btn-foodie w-100">{{ allergy.name }}</a>
+        <a href="{% url 'allergy_recipes' allergy.id %}" class="btn btn-foodie w-100">{{ allergy.name}}-Free</a>
       </div>
     {% endfor %}
   </div>

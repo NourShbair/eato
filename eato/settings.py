@@ -27,13 +27,17 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure--u24r$koq+h+be#+oq_moxhhsf!w6e26!3wl_#uwp@bh=x$57q'
+SECRET_KEY = os.environ.get("SECRET_KEY")
+DEBUG = os.environ.get("DEBUG", False)
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+USE_X_FORWARDED_HOST = True
 
-ALLOWED_HOSTS = ['.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = []
+CSRF_TRUSTED_ORIGINS = []
+host = os.environ.get("HOST")
+if host:
+    ALLOWED_HOSTS.append(host)
+    CSRF_TRUSTED_ORIGINS.append(f"https://{host}")
 
 
 # Application definition
@@ -49,6 +53,7 @@ INSTALLED_APPS = [
     'cloudinary',
     'cloudinary_storage',
     'widget_tweaks',
+    'tests',
 ]
 
 MIDDLEWARE = [

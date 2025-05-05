@@ -1,48 +1,68 @@
 {% extends "base.html" %}
 {% block content %}
+<!-- Main container with vertical padding -->
 <div class="container py-5">
   <div class="row">
+    <!-- User Action Buttons (Only visible when logged in) -->
     {% if user.is_authenticated %}
       <div class="d-flex justify-content-between align-items-center mt-4 flex-wrap gap-2">
-    
-        <!-- Like + Save buttons (left side) -->
+        
+        <!-- Like and Save Buttons (Left Side) -->
         <div class="d-flex gap-2 flex-grow-1" style="max-width: 60%;">
+          <!-- Like Toggle Form -->
           <form method="POST" action="{% url 'toggle_like' recipe.id %}">
             {% csrf_token %}
             <button type="submit" class="btn btn-outline-danger w-100">
-              ❤️ {% if user in recipe.likes.all %}Unlike{% else %}Like{% endif %} ({{ recipe.total_likes }})
+              ❤️ {% if user in recipe.likes.all %}Unlike{% else %}Like{% endif %} 
+              ({{ recipe.total_likes }})
             </button>
           </form>
-    
+          
+          <!-- Save Toggle Form -->
           <form method="POST" action="{% url 'toggle_save' recipe.id %}">
             {% csrf_token %}
             <button type="submit" class="btn btn-outline-warning w-100">
-              ⭐ {% if user in recipe.favorites.all %}Unsave{% else %}Save{% endif %} ({{ recipe.total_favorites }})
+              ⭐ {% if user in recipe.favorites.all %}Unsave{% else %}Save{% endif %} 
+              ({{ recipe.total_favorites }})
             </button>
           </form>
         </div>
-    
-        <!-- Edit + Delete buttons (right side) -->
+        
+        <!-- Edit/Delete Buttons (Right Side) - Only visible to recipe creator -->
         {% if user == recipe.created_by %}
           <div class="d-flex gap-2">
-            <a href="{% url 'edit_recipe' recipe.id %}" class="btn btn-warning h-100">✏️ Edit</a>
-            <a href="{% url 'delete_recipe' recipe.id %}" class="btn btn-danger h-100">🗑️ Delete</a>
+            <a href="{% url 'edit_recipe' recipe.id %}" class="btn btn-warning h-100">
+              ✏️ Edit
+            </a>
+            <a href="{% url 'delete_recipe' recipe.id %}" class="btn btn-danger h-100">
+              🗑️ Delete
+            </a>
           </div>
         {% endif %}
-
       </div>
     {% endif %}
-    <!-- Recipe Image -->
+
+    <!-- Recipe Image Section -->
     <div class="col-md-6 mb-4">
-      <img src="{{ recipe.image.url }}" class="img-fluid rounded sßhadow" alt="{{ recipe.title }}">
+      <img src="{{ recipe.image.url }}" 
+           class="img-fluid rounded shadow" 
+           alt="{{ recipe.title }}">
     </div>
 
-    <!-- Recipe Info -->
+    <!-- Recipe Information Section -->
     <div class="col-md-6">
+      <!-- Recipe Title -->
       <h2 class="text-orange">{{ recipe.title }}</h2>
-      <p class="text-muted">Created by <strong>{{ recipe.created_by.username }}</strong> | {{ recipe.created_at|date:"M d, Y" }}</p>
+      
+      <!-- Author and Date -->
+      <p class="text-muted">
+        Created by <strong>{{ recipe.created_by.username }}</strong> | 
+        {{ recipe.created_at|date:"M d, Y" }}
+      </p>
 
-      <p><strong>Meal Type:</strong>
+      <!-- Meal Type -->
+      <p>
+        <strong>Meal Type:</strong>
         {% if recipe.meal_type.all %}
           {% for type in recipe.meal_types.all %}
             {{ type.name }}{% if not forloop.last %}, {% endif %}
@@ -51,17 +71,23 @@
           None
         {% endif %}
       </p>
+
+      <!-- Cuisine Type -->
       <p><strong>Cuisine:</strong> {{ recipe.cuisine.name }}</p>
 
+      <!-- Allergy Information -->
       {% if recipe.allergies.all %}
-        <p><strong>Allergy Info:</strong>
+        <p>
+          <strong>Allergy Info:</strong>
           {% for tag in recipe.allergies.all %}
             <span class="badge bg-warning text-dark">{{ tag.name }}</span>
           {% endfor %}
         </p>
       {% endif %}
 
-      <p><strong>Allergies:</strong>
+      <!-- Allergy Tags -->
+      <p>
+        <strong>Allergies:</strong>
         {% if recipe.allergy_tags.all %}
           {% for allergy in recipe.allergy_tags.all %}
             {{ allergy.name }}{% if not forloop.last %}, {% endif %}
@@ -71,23 +97,26 @@
         {% endif %}
       </p>
 
+      <!-- Recipe Description -->
       <p class="lead mt-4">{{ recipe.description }}</p>
     </div>
   </div>
 
   <hr class="my-5">
 
-  <!-- Ingredients -->
+  <!-- Ingredients Section -->
   <div class="mb-5">
     <h4 class="text-orange mb-3">🧂 Ingredients</h4>
     <ul class="list-group list-group-flush">
       {% for item in ingredients %}
-        <li class="list-group-item">{{ item.quantity }} {{ item.unit }} {{ item.ingredient.name }}</li>
+        <li class="list-group-item">
+          {{ item.quantity }} {{ item.unit }} {{ item.ingredient.name }}
+        </li>
       {% endfor %}
     </ul>
   </div>
 
-  <!-- Instructions -->
+  <!-- Instructions Section -->
   <div>
     <h4 class="text-orange mb-3">👨‍🍳 Instructions</h4>
     <p style="white-space: pre-wrap;">{{ recipe.instructions }}</p>

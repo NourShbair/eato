@@ -1,52 +1,100 @@
 {% extends "base.html" %}
 {% block content %}
+<!-- Main container with vertical padding -->
 <div class="container py-5">
-  <h3 class="text-orange mb-4">🔍 Results for: "{{ query }}"</h3>
+    <!-- Search Results Header -->
+    <h3 class="text-orange mb-4">
+        🔍 Results for: "{{ query }}"  <!-- Display search query -->
+    </h3>
 
-  <div class="row">
-    {% for recipe in page_obj %}
-      <div class="col-md-4 mb-4">
-        <div class="card h-100 shadow-sm">
-          <img src="{{ recipe.image.url }}" class="card-img-top" alt="{{ recipe.title }}">
-          <div class="card-body">
-            <h5 class="card-title">{{ recipe.title }}</h5>
-            <p class="card-text">{{ recipe.description|truncatewords:20 }}</p>
-            <a href="{% url 'recipe_details' recipe.id %}" class="btn btn-sm btn-foodie">View Recipe</a>
-          </div>
-        </div>
-      </div>
-    {% endfor %}
-  </div>
+    <!-- Recipe Grid Container -->
+    <div class="row">
+        {% for recipe in page_obj %}  <!-- Loop through paginated results -->
+            <!-- Recipe Card Column (4 columns on medium+ screens) -->
+            <div class="col-md-4 mb-4">
+                <!-- Recipe Card with consistent height and subtle shadow -->
+                <div class="card h-100 shadow-sm">
+                    <!-- Recipe Image -->
+                    <img src="{{ recipe.image.url }}" 
+                         class="card-img-top" 
+                         alt="{{ recipe.title }}"
+                         loading="lazy">  <!-- Lazy loading for better performance -->
+                    
+                    <!-- Card Body Content -->
+                    <div class="card-body">
+                        <!-- Recipe Title -->
+                        <h5 class="card-title">{{ recipe.title }}</h5>
+                        
+                        <!-- Truncated Description (20 words) -->
+                        <p class="card-text">
+                            {{ recipe.description|truncatewords:20 }}
+                        </p>
+                        
+                        <!-- View Recipe Button -->
+                        <a href="{% url 'recipe_details' recipe.id %}" 
+                           class="btn btn-sm btn-foodie">
+                            View Recipe
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <!-- No Results Message -->
+            <div class="col-12 text-center">
+                <p>No recipes found matching your search.</p>
+            </div>
+        {% endfor %}
+    </div>
 
-  <!-- Pagination -->
-  <nav aria-label="Search results pages" class="mt-4">
-    <ul class="pagination justify-content-center">
-      {% if page_obj.has_previous %}
-        <li class="page-item">
-          <a class="page-link" href="?q={{ query }}&category={{ selected_category }}&cuisine={{ selected_cuisine }}&page={{ page_obj.previous_page_number }}">Previous</a>
-        </li>
-      {% else %}
-        <li class="page-item disabled"><span class="page-link">Previous</span></li>
-      {% endif %}
+    <!-- Pagination Navigation -->
+    <nav aria-label="Search results pages" class="mt-4">
+        <ul class="pagination justify-content-center">
+            <!-- Previous Page Link -->
+            {% if page_obj.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" 
+                       href="?q={{ query }}&category={{ selected_category }}&cuisine={{ selected_cuisine }}&page={{ page_obj.previous_page_number }}">
+                        Previous
+                    </a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <span class="page-link">Previous</span>
+                </li>
+            {% endif %}
 
-      {% for num in page_obj.paginator.page_range %}
-        {% if page_obj.number == num %}
-          <li class="page-item active"><span class="page-link">{{ num }}</span></li>
-        {% else %}
-          <li class="page-item">
-            <a class="page-link" href="?q={{ query }}&category={{ selected_category }}&cuisine={{ selected_cuisine }}&page={{ num }}">{{ num }}</a>
-          </li>
-        {% endif %}
-      {% endfor %}
+            <!-- Page Numbers -->
+            {% for num in page_obj.paginator.page_range %}
+                {% if page_obj.number == num %}
+                    <!-- Current Page -->
+                    <li class="page-item active">
+                        <span class="page-link">{{ num }}</span>
+                    </li>
+                {% else %}
+                    <!-- Other Pages -->
+                    <li class="page-item">
+                        <a class="page-link" 
+                           href="?q={{ query }}&category={{ selected_category }}&cuisine={{ selected_cuisine }}&page={{ num }}">
+                            {{ num }}
+                        </a>
+                    </li>
+                {% endif %}
+            {% endfor %}
 
-      {% if page_obj.has_next %}
-        <li class="page-item">
-          <a class="page-link" href="?q={{ query }}&category={{ selected_category }}&cuisine={{ selected_cuisine }}&page={{ page_obj.next_page_number }}">Next</a>
-        </li>
-      {% else %}
-        <li class="page-item disabled"><span class="page-link">Next</span></li>
-      {% endif %}
-    </ul>
-  </nav>
+            <!-- Next Page Link -->
+            {% if page_obj.has_next %}
+                <li class="page-item">
+                    <a class="page-link" 
+                       href="?q={{ query }}&category={{ selected_category }}&cuisine={{ selected_cuisine }}&page={{ page_obj.next_page_number }}">
+                        Next
+                    </a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                    <span class="page-link">Next</span>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
 </div>
 {% endblock %}
