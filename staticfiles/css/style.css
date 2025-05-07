@@ -1,14 +1,17 @@
+/* Base body styles */
 body {
   background-color: #fff8f0;
   color: #333;
 }
 
+/* Brand color text class */
 .text-orange {
-  color: #d2691e;
+  color: #b90049;
 }
 
+/* Custom branded button with rounded corners and hover effect */
 .btn-foodie {
-  background-color: #f4a261;
+  background-color: #eb4a8a;
   color: white;
   border-radius: 30px;
   font-weight: 500;
@@ -16,14 +19,16 @@ body {
 }
 
 .btn-foodie:hover {
-  background-color: #e76f51;
+  background-color: #f86da5;
   color: white;
 }
 
+/* Main heading styles */
 h1, h2 {
   color: #d2691e;
 }
 
+/* Recipe card with shadow and hover animation */
 .recipe-card {
   border: none;
   border-radius: 20px;
@@ -38,18 +43,21 @@ h1, h2 {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
+/* Recipe image container */
 .recipe-image {
   width: 100%;
   height: 200px;
   object-fit: cover;
 }
 
+/* Recipe content padding container */
 .recipe-content {
   padding: 1rem;
 }
 
+/* Recipe tag styling */
 .recipe-tags span {
-  background-color: #f4a261;
+  background-color: #e75992;
   color: white;
   font-size: 0.75rem;
   border-radius: 12px;
@@ -57,11 +65,13 @@ h1, h2 {
   margin-right: 0.3rem;
 }
 
+/* Alternative body styling */
 body {
   margin: 2rem;
   background-color: #f8f8f8;
 }
 
+/* Foodie card with hover scale effect */
 .card-foodie {
   border: none;
   border-radius: 20px;
@@ -73,36 +83,46 @@ body {
   transform: scale(1.02);
 }
 
+/* Section title */
 .section-title {
   font-weight: bold;
-  color: #d2691e;
+  color: #b90049;
   margin-bottom: 1rem;
-  border-bottom: 2px solid #f3d3a1;
+  border-bottom: 2px solid #f093b8;
   display: inline-block;
   padding-bottom: 0.3rem;
 }
 
+/* List group item styling */
 .list-group-item {
   border-radius: 12px;
   margin-bottom: 0.5rem;
 }
 
+/* Heading color styles */
 h1, h2, h3 {
   color: #333;
 }
 
+/* Form element common styles */
 form input, form textarea, form select, form button {
   display: block;
   margin: 0.5rem 0;
   padding: 0.5rem;
-  width: 100%;
   max-width: 500px;
 }
 
+/* Large search button style */
+#searchBtnLg{
+  width: 100%;
+}
+
+/* Search form element style */
 .search-form-element {
 max-width: 100%;
 }
 
+/* Ingredient group container */
 .ingredient-group {
   display: flex;
   gap: 0.5rem;
@@ -113,22 +133,25 @@ max-width: 100%;
   flex: 1;
 }
 
+/* Ingredient group button styles */
 .ingredient-group button {
-  background-color: #e74c3c;
+  background-color: #b90049;
   color: white;
   border: none;
   padding: 0.5rem 1rem;
   cursor: pointer;
 }
 
+/* Remove ingredient button style */
 .remove_ingredient {
-  background-color: #e74c3c;
+  background-color: #b90049;
   color: white;
   border: none;
   padding: 0.5rem 1rem;
   cursor: pointer;
 }
 
+/* Add ingredient button style */
 #addIngredient {
   background-color: #27ae60;
   color: white;
@@ -136,25 +159,27 @@ max-width: 100%;
   padding: 0.5rem 1rem;
   cursor: pointer;
 }
+
+/* Submit button styling */
 button[type="submit"] {
   background-color: #27ae60;
   color: white;
   border: none;
-  /* padding: 0.7rem 1.5rem; */
-  font-size: 1rem;
   cursor: pointer;
 }
 
+/* Link styles */
 a {
   color: #3498db;
   text-decoration: none;
 }
 
+/* Search input style */
 input[type="search"] {
-  background-color: #fffaf1;
-  border: 1px solid #f4a261;
+  border: 1px solid #acacac;
 }
 
+/* Navigation styles */
 nav {
   margin-bottom: 2rem;
 }
@@ -163,31 +188,33 @@ nav a {
   margin-right: 1rem;
 }
 
+/* Form select style */
 .form-select {
-  background-color: #fffaf1;
-  border-color: #f4a261;
+  border-color: #acacac;
 }
 
-
+/* Fluid image style with rounded corners */
 .img-fluid {
   max-height: 400px;
   object-fit: cover;
   border-radius: 15px;
 }
 
+/* Badge styling */
 .badge {
   font-size: 0.9rem;
   margin-right: 0.25rem;
 }
 
+/* Pagination styles */
 .page-link {
   border-radius: 20px;
-  color: #d2691e;
+  color: #b90049;
 }
 
 .page-item.active .page-link {
-  background-color: #f4a261;
-  border-color: #f4a261;
+  background-color: #e24785;
+  border-color: #e24785;
   color: white;
 }
 
@@ -195,31 +222,34 @@ nav a {
   color: #aaa;
 }
 
+/* Outline button variants */
 .btn-outline-danger {
-  border-color: #e76f51;
-  color: #e76f51;
+  border-color: #b90049;
+  color: #b90049;
 }
 
 .btn-outline-danger:hover {
-  background-color: #e76f51;
+  background-color: #e24785;
   color: white;
 }
 
 .btn-outline-warning {
-  border-color: #f4a261;
-  color: #f4a261;
+  border-color: #ed5693;
+  color: #ed5693;
 }
 
 .btn-outline-warning:hover {
-  background-color: #f4a261;
+  background-color: #e24785;
   color: white;
 }
 
+/* Danger and warning button text color */
 .btn-danger,
 .btn-warning {
   color: white;
 }
 
+/* Card image top styles with hover effect */
 .card-img-top {
   transition: transform 0.2s ease-in-out;
 }
@@ -227,24 +257,28 @@ nav a {
   transform: scale(1.02);
 }
 
+/* Card image dimensions */
 .card-img-top {
   height: 250px;
   object-fit: cover;
 }
 
+/* Ingredient group margin reset */
 .ingredient-group {
   margin-top: 0 !important;
 }
 
+/* Mobile search bar transition */
 #mobileSearchBar {
   transition: all 0.3s ease;
 }
 
+/* Search button */
 #searchBtn {
 width: 30%;
 }
 
-
+/* Mobile search animation styles */
 .mobile-search {
   opacity: 0;
   display: none;
@@ -256,6 +290,7 @@ width: 30%;
   display: inline;
 }
 
+/* Checkbox group layout */
 .checkbox-group {
   display: flex;
   flex-wrap: wrap;
@@ -267,7 +302,7 @@ width: 30%;
   gap: 0.3rem;
 }
 
-/* Media query: small, large or landscape phones (991px and down) */
+/* Media query for mobile responsiveness (991px and down) */
 @media screen and (max-width: 991px) {
   .user-stats-box{
     margin-bottom:10px;
