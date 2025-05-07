@@ -13,9 +13,9 @@
             {% elif request.GET.filter == 'saved' %}
                 ⭐ Saved Recipes
             {% elif selected_allergy %}
-                Recipes Without {{ selected_allergy.name }}
+                Recipes Without {{ selected_allergy.name }} ({{page_obj|length}})
             {% else %}
-                📖 All Recipes
+                📖 All Recipes ({{page_obj|length}})
             {% endif %}
         </h2>
 
