@@ -12,31 +12,28 @@
         {% for recipe in page_obj %}  <!-- Loop through paginated results -->
             <!-- Recipe Card Column (4 columns on medium+ screens) -->
             <div class="col-md-4 mb-4">
-                <!-- Recipe Card with consistent height and subtle shadow -->
-                <div class="card h-100 shadow-sm">
-                    <!-- Recipe Image -->
-                    <img src="{{ recipe.image.url }}" 
-                         class="card-img-top" 
-                         alt="{{ recipe.title }}"
-                         loading="lazy">  <!-- Lazy loading for better performance -->
-                    
-                    <!-- Card Body Content -->
-                    <div class="card-body">
-                        <!-- Recipe Title -->
-                        <h5 class="card-title">{{ recipe.title }}</h5>
+                <a href="{% url 'recipe_details' recipe.id %}" >
+                    <!-- Recipe Card with consistent height and subtle shadow -->
+                    <div class="card h-100 shadow-sm">
+                        <!-- Recipe Image -->
+                        <img src="{{ recipe.image.url }}" 
+                            class="card-img-top" 
+                            alt="{{ recipe.title }}"
+                            loading="lazy">  <!-- Lazy loading for better performance -->
                         
-                        <!-- Truncated Description (20 words) -->
-                        <p class="card-text">
-                            {{ recipe.description|truncatewords:20 }}
-                        </p>
+                        <!-- Card Body Content -->
+                        <div class="card-body">
+                            <!-- Recipe Title -->
+                            <h5 class="card-title">{{ recipe.title }}</h5>
+                            
+                            <!-- Truncated Description (20 words) -->
+                            <p class="card-text">
+                                {{ recipe.description|truncatewords:20 }}
+                            </p>
                         
-                        <!-- View Recipe Button -->
-                        <a href="{% url 'recipe_details' recipe.id %}" 
-                           class="btn btn-sm btn-foodie">
-                            View Recipe
-                        </a>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
         {% empty %}
             <!-- No Results Message -->
