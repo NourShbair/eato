@@ -76,15 +76,15 @@ I've tested my deployed project on multiple browsers to check for compatibility 
 
 | Page | Chrome | Firefox | Safari | Notes |
 | --- | --- | --- | --- | --- |
-| Register | ![screenshot](documentation/browsers/chromium_desktop__signup.png) | ![screenshot](documentation/browsers/firefox_desktop__signup.png) | ![screenshot](documentation/browsers/safari-register.png) | Works as expected |
-| Login | ![screenshot](documentation/browsers/chromium_desktop__login.png) | ![screenshot](documentation/browsers/firefox_desktop__login.png) | ![screenshot](documentation/browsers/safari-login.png) | Works as expected |
-| Home | ![screenshot](documentation/browsers/chromium_desktop__random_1.png) | ![screenshot](documentation/browsers/firefox_desktop__random_1.png) | ![screenshot](documentation/browsers/safari-home.png) | Works as expected |
-| Add Recipe | ![screenshot](documentation/browsers/chromium_desktop__recipes_add.png) | ![screenshot](documentation/browsers/firefox_desktop__recipes_add.png) | ![screenshot](documentation/browsers/safari-add-blog.png) | Works as expected |
-| Edit Recipe | ![screenshot](documentation/browsers/chromium_desktop__recipes_18_edit_.png) | ![screenshot](documentation/browsers/firefox_desktop__recipes_18_edit_.png) | ![screenshot](documentation/browsers/safari-edit-blog.png) | Works as expected |
-| Delete Recipe | ![screenshot](documentation/browsers/chromium_desktop__recipes_18_delete_.png) | ![screenshot](documentation/browsers/firefox_desktop__recipes_18_delete_.png) | ![screenshot](documentation/browsers/safari-edit-blog.png) | Works as expected |
-| Recipes List | ![screenshot](documentation/browsers/chromium_desktop__recipes.png) | ![screenshot](documentation/browsers/firefox_desktop__recipes.png) | ![screenshot](documentation/browsers/safari-blog-post.png) | Works as expected |
-| Recipe Details | ![screenshot](documentation/browsers/chromium_desktop__recipes_18.png) | ![screenshot](documentation/browsers/firefox_desktop__recipes_18.png) | ![screenshot](documentation/browsers/safari-blog-post.png) | Works as expected |
-| 404 | ![screenshot](documentation/browsers/chromium_desktop__recipes_test.png) | ![screenshot](documentation/browsers/firefox_desktop__recipes_test.png) | ![screenshot](documentation/browsers/safari-404.png) | Works as expected |
+| Register | ![screenshot](documentation/browsers/chromium_desktop__signup.png) | ![screenshot](documentation/browsers/firefox_desktop__signup.png) | ![screenshot](documentation/browsers/safari_desktop__signup.png) | Works as expected |
+| Login | ![screenshot](documentation/browsers/chromium_desktop__login.png) | ![screenshot](documentation/browsers/firefox_desktop__login.png) | ![screenshot](documentation/browsers/safari_desktop__login.png) | Works as expected |
+| Home | ![screenshot](documentation/browsers/chromium_desktop__random_1.png) | ![screenshot](documentation/browsers/firefox_desktop__random_1.png) | ![screenshot](documentation/browsers/safari_desktop__random_1.png) | Works as expected |
+| Add Recipe | ![screenshot](documentation/browsers/chromium_desktop__recipes_add.png) | ![screenshot](documentation/browsers/firefox_desktop__recipes_add.png) | ![screenshot](documentation/browsers/safari_desktop__recipes_add_.png) | Works as expected |
+| Edit Recipe | ![screenshot](documentation/browsers/chromium_desktop__recipes_18_edit_.png) | ![screenshot](documentation/browsers/firefox_desktop__recipes_18_edit_.png) | ![screenshot](documentation/browsers/safari_desktop__recipes_18_edit_.png) | Works as expected |
+| Delete Recipe | ![screenshot](documentation/browsers/chromium_desktop__recipes_18_delete_.png) | ![screenshot](documentation/browsers/firefox_desktop__recipes_18_delete_.png) | ![screenshot](documentation/browsers/safari_desktop__recipes_18_delete_.png) | Works as expected |
+| Recipes List | ![screenshot](documentation/browsers/chromium_desktop__recipes.png) | ![screenshot](documentation/browsers/firefox_desktop__recipes.png) | ![screenshot](documentation/browsers/safari_desktop__recipes_.png) | Works as expected |
+| Recipe Details | ![screenshot](documentation/browsers/chromium_desktop__recipes_18.png) | ![screenshot](documentation/browsers/firefox_desktop__recipes_18.png) | ![screenshot](documentation/browsers/safari_desktop__recipes_18_.png) | Works as expected |
+| 404 | ![screenshot](documentation/browsers/chromium_desktop__recipes_test.png) | ![screenshot](documentation/browsers/firefox_desktop__recipes_test.png) | ![screenshot](documentation/browsers/safari_desktop__test.png) | Works as expected |
 
 ## Lighthouse Audit
 
@@ -211,13 +211,14 @@ Below are the results from the tests that I've written for this application:
 
 I have used Django's built-in unit testing framework to test the application functionality. In order to run the tests, I ran the following command in the terminal each time:
 
-- `python3 manage.py test eato-app`
+- `python3 manage.py test`
 
 To create the coverage report, I would then run the following commands:
 
 - `pip3 install coverage`
 - `pip3 freeze --local > requirements.txt`
 - `coverage run --omit=*/site-packages/*,*/migrations/*,*/__init__.py,env.py,manage.py test`
+- `coverage run manage.py test`
 - `coverage report`
 
 To see the HTML version of the reports, and find out whether some pieces of code were missing, I ran the following commands:
@@ -227,7 +228,7 @@ To see the HTML version of the reports, and find out whether some pieces of code
 
 Below are the results from the full coverage report on my application that I've tested:
 
-![screenshot](documentation/automation/html-coverage.png)
+![screenshot](documentation/unit-test-coverage-report.png)
 
 #### Unit Test Issues
 
@@ -239,19 +240,6 @@ Below are the results from the full coverage report on my application that I've 
 
 ## Bugs
 
-⚠️ INSTRUCTIONS ⚠️
-
-Nobody likes bugs,... except the assessors! Projects seem more suspicious if a student doesn't properly track their bugs. If you're about to submit your project without any bugs listed below, you should ask yourself why you're doing this course in the first place, if you're able to build this entire application without running into any bugs. The best thing you can do for any project is to document your bugs! Not only does it show the true stages of development, but think of it as breadcrumbs for yourself in the future, should you encounter the same/similar bug again, it acts as a gentle reminder on what you did to fix the bug.
-
-If/when you encounter bugs during the development stages of your project, you should document them here, ideally with a screenshot explaining what the issue was, and what you did to fix the bug.
-
-Alternatively, an improved way to manage bugs is to use the built-in **[Issues](https://www.github.com/NourShbair/eato/issues)** tracker on your GitHub repository. This can be found at the top of your repository, the tab called "Issues".
-
-If using the Issues tracker for bug management, you can simplify the documentation process for testing. Issues allow you to directly paste screenshots into the issue page without having to first save the screenshot locally. You can add labels to your issues (e.g. `bug`), assign yourself as the owner, and add comments/updates as you progress with fixing the issue(s). Once you've solved the issue/bug, you should then "Close" it.
-
-When showcasing your bug tracking for assessment, you can use the following examples below.
-
-⚠️ --- END --- ⚠️
 
 ### Fixed Bugs
 
@@ -265,13 +253,7 @@ All previously closed/fixed bugs can be tracked [here](https://www.github.com/No
 
 ### Unfixed Bugs
 
-⚠️ INSTRUCTIONS ⚠️
 
-You will need to mention any unfixed bugs and why they are not fixed upon submission of your project. This section should include shortcomings of the frameworks or technologies used. Although time can be a big variable to consider, paucity of time and difficulty understanding implementation is not a valid reason to leave bugs unfixed. Where possible, you must fix all outstanding bugs, unless outside of your control.
-
-If you've identified any unfixed bugs, no matter how small, be sure to list them here! It's better to be honest and list them, because if it's not documented and an assessor finds the issue, they need to know whether or not you're aware of them as well, and why you've not corrected/fixed them.
-
-⚠️ --- END --- ⚠️
 
 [![GitHub issues](https://img.shields.io/github/issues/NourShbair/eato)](https://www.github.com/NourShbair/eato/issues)
 
