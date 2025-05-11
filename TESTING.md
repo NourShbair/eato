@@ -9,19 +9,19 @@
 
 I have used the recommended [HTML W3C Validator](https://validator.w3.org) to validate all of my HTML files.
 
-| Directory | File | URL | Screenshot | Notes |
-| --- | --- | --- | --- | --- |
-| templates | [404.html](https://github.com/NourShbair/eato/blob/main/templates/404.html) | Link (if applicable) | ![screenshot](documentation/validation/html-templates-404.png) | Notes (if applicable) |
-| templates | [500.html](https://github.com/NourShbair/eato/blob/main/templates/500.html) | Link (if applicable) | ![screenshot](documentation/validation/html-templates-500.png) | Notes (if applicable) |
-| templates | [index.html](https://github.com/NourShbair/eato/blob/main/templates/index.html) | Link (if applicable) | ![screenshot](documentation/validation/html-templates-index.png) | Notes (if applicable) |
-| templates | [add_recipe.html](https://github.com/NourShbair/eato/blob/main/templates/recipes/add_recipe.html) | Link (if applicable) | ![screenshot](documentation/validation/html-templates-add_recipe.png) | Notes (if applicable) |
-| templates | [delete_recipe.html](https://github.com/NourShbair/eato/blob/main/templates/recipes/delete_recipe.html) | Link (if applicable) | ![screenshot](documentation/validation/html-templates-delete_recipe.png) | Notes (if applicable) |
-| templates | [edit_recipe.html](https://github.com/NourShbair/eato/blob/main/templates/recipes/edit_recipe.html) | Link (if applicable) | ![screenshot](documentation/validation/html-templates-edit_recipe.png) | Notes (if applicable) |
-| templates | [recipe_details.html](https://github.com/NourShbair/eato/blob/main/templates/recipes/recipe_details.html) | Link (if applicable) | ![screenshot](documentation/validation/html-templates-recipe_details.png) | Notes (if applicable) |
-| templates | [recipes_list.html](https://github.com/NourShbair/eato/blob/main/templates/recipes/recipes_list.html) | Link (if applicable) | ![screenshot](documentation/validation/html-templates-recipes_list.png) | Notes (if applicable) |
-| templates | [search_results.html](https://github.com/NourShbair/eato/blob/main/templates/recipes/search_results.html) | Link (if applicable) | ![screenshot](documentation/validation/html-templates-search_results.png) | Notes (if applicable) |
-| templates | [login.html](https://github.com/NourShbair/eato/blob/main/templates/registration/login.html) | Link (if applicable) | ![screenshot](documentation/validation/html-templates-login.png) | Notes (if applicable) |
-| templates | [signup.html](https://github.com/NourShbair/eato/blob/main/templates/registration/signup.html) | Link (if applicable) | ![screenshot](documentation/validation/html-templates-signup.png) | Notes (if applicable) |
+| Directory | File | Screenshot | Notes |
+| --- | --- | --- | --- |
+| templates | [404.html](https://github.com/NourShbair/eato/blob/main/templates/404.html) | ![screenshot](documentation/validation/validate-404.png) | - |
+| templates | [500.html](https://github.com/NourShbair/eato/blob/main/templates/500.html) | ![screenshot](documentation/validation/validate-500.png) | - |
+| templates | [index.html](https://github.com/NourShbair/eato/blob/main/templates/index.html) | ![screenshot](documentation/validation/validate-home.png) | - |
+| templates | [add_recipe.html](https://github.com/NourShbair/eato/blob/main/templates/recipes/add_recipe.html) | ![screenshot](documentation/validation/validate-add.png) | - |
+| templates | [delete_recipe.html](https://github.com/NourShbair/eato/blob/main/templates/recipes/delete_recipe.html) | ![screenshot](documentation/validation/validate-delete.png) | - |
+| templates | [edit_recipe.html](https://github.com/NourShbair/eato/blob/main/templates/recipes/edit_recipe.html) | ![screenshot](documentation/validation/validate-edit.png) | - |
+| templates | [recipe_details.html](https://github.com/NourShbair/eato/blob/main/templates/recipes/recipe_details.html) | ![screenshot](documentation/validation/validate-recipe-details.png) | - |
+| templates | [recipes_list.html](https://github.com/NourShbair/eato/blob/main/templates/recipes/recipes_list.html) | ![screenshot](documentation/validation/validate-recipes-list.png) | - |
+| templates | [search_results.html](https://github.com/NourShbair/eato/blob/main/templates/recipes/search_results.html) | ![screenshot](documentation/validation/validate-login.png) | - |
+| templates | [login.html](https://github.com/NourShbair/eato/blob/main/templates/registration/login.html) | ![screenshot](documentation/validation/validate-404.png) | - |
+| templates | [signup.html](https://github.com/NourShbair/eato/blob/main/templates/registration/signup.html) | ![screenshot](documentation/validation/validate-signup.png) | - |
 
 
 ### CSS
@@ -92,12 +92,11 @@ I've tested my deployed project using the Lighthouse Audit tool to check for any
 
 | Page | Mobile | Desktop |
 | --- | --- | --- |
-| Register | ![screenshot](documentation/lighthouse/mobile-register.png) | ![screenshot](documentation/lighthouse/desktop-register.png) |
+| Register | ![screenshot](documentation/lighthouse/mobile-signup.png) | ![screenshot](documentation/lighthouse/desktop-signup.png) |
 | Login | ![screenshot](documentation/lighthouse/mobile-login.png) | ![screenshot](documentation/lighthouse/desktop-login.png) |
 | Home | ![screenshot](documentation/lighthouse/mobile-home.png) | ![screenshot](documentation/lighthouse/desktop-home.png) |
-| Add Blog | ![screenshot](documentation/lighthouse/mobile-add-blog.png) | ![screenshot](documentation/lighthouse/desktop-add-blog.png) |
-| Edit Blog | ![screenshot](documentation/lighthouse/mobile-edit-blog.png) | ![screenshot](documentation/lighthouse/desktop-edit-blog.png) |
-| Blog Post | ![screenshot](documentation/lighthouse/mobile-blog-post.png) | ![screenshot](documentation/lighthouse/desktop-blog-post.png) |
+| Recipes List | ![screenshot](documentation/lighthouse/mobile-list.png) | ![screenshot](documentation/lighthouse/desktop-list.png) |
+| Recipe Details | ![screenshot](documentation/lighthouse/mobile-details.png) | ![screenshot](documentation/lighthouse/desktop-details.png) |
 | 404 | ![screenshot](documentation/lighthouse/mobile-404.png) | ![screenshot](documentation/lighthouse/desktop-404.png) |
 
 ## Defensive Programming
@@ -208,25 +207,11 @@ Below are the results from the tests that I've written for this application:
 | --- | --- | --- |
 | 1 passed | 16 passed | ![screenshot](documentation/automation/jest-coverage.png) |
 
-#### Jest Test Issues
-
-⚠️ INSTRUCTIONS ⚠️
-
-Use this section to list any known issues you ran into while writing your Jest tests. Remember to include screenshots (where possible), and a solution to the issue (if known). This can be used for both "fixed" and "unresolved" issues. Remove this sub-section entirely if you somehow didn't run into any issues while working with Jest.
-
-⚠️ --- END --- ⚠️
-
 ### Python (Unit Testing)
-
-⚠️ INSTRUCTIONS ⚠️
-
-Adjust the code below (file names, function names, etc.) to match your own project files/folders. Use these notes loosely when documenting your own Python Unit tests, and remove/adjust where applicable.
-
-⚠️ SAMPLE ⚠️
 
 I have used Django's built-in unit testing framework to test the application functionality. In order to run the tests, I ran the following command in the terminal each time:
 
-- `python3 manage.py test name-of-app`
+- `python3 manage.py test eato-app`
 
 To create the coverage report, I would then run the following commands:
 
