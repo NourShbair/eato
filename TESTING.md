@@ -59,13 +59,16 @@ I've tested my deployed project to check for responsiveness issues.
 
 | Page | Mobile | Tablet | Desktop | Notes |
 | --- | --- | --- | --- | --- |
-| Register | ![screenshot](documentation/responsiveness/mobile-register.png) | ![screenshot](documentation/responsiveness/tablet-register.png) | ![screenshot](documentation/responsiveness/desktop-register.png) | Works as expected |
-| Login | ![screenshot](documentation/responsiveness/mobile-login.png) | ![screenshot](documentation/responsiveness/tablet-login.png) | ![screenshot](documentation/responsiveness/desktop-login.png) | Works as expected |
-| Home | ![screenshot](documentation/responsiveness/mobile-home.png) | ![screenshot](documentation/responsiveness/tablet-home.png) | ![screenshot](documentation/responsiveness/desktop-home.png) | Works as expected |
-| Add Blog | ![screenshot](documentation/responsiveness/mobile-add-blog.png) | ![screenshot](documentation/responsiveness/tablet-add-blog.png) | ![screenshot](documentation/responsiveness/desktop-add-blog.png) | Works as expected |
-| Edit Blog | ![screenshot](documentation/responsiveness/mobile-edit-blog.png) | ![screenshot](documentation/responsiveness/tablet-edit-blog.png) | ![screenshot](documentation/responsiveness/desktop-edit-blog.png) | Works as expected |
-| Blog Post | ![screenshot](documentation/responsiveness/mobile-blog-post.png) | ![screenshot](documentation/responsiveness/tablet-blog-post.png) | ![screenshot](documentation/responsiveness/desktop-blog-post.png) | Works as expected |
-| 404 | ![screenshot](documentation/responsiveness/mobile-404.png) | ![screenshot](documentation/responsiveness/tablet-404.png) | ![screenshot](documentation/responsiveness/desktop-404.png) | Works as expected |
+| Register | ![screenshot](documentation/responsiveness/chromium_mobile__signup.png) | ![screenshot](documentation/responsiveness/chromium_tablet__signup.png) | ![screenshot](documentation/responsiveness/chromium_desktop__signup.png) | Works as expected |
+| Login | ![screenshot](documentation/responsiveness/chromium_mobile__login.png) | ![screenshot](documentation/responsiveness/chromium_tablet__login.png) | ![screenshot](documentation/responsiveness/chromium_desktop__login.png) | Works as expected |
+| Home | ![screenshot](documentation/responsiveness/chromium_mobile__random_1.png) | ![screenshot](documentation/responsiveness/chromium_tablet__random_1.png) | ![screenshot](documentation/responsiveness/chromium_desktop__random_1.png) | Works as expected |
+| Add Recipe | ![screenshot](documentation/responsiveness/chromium_mobile__recipes_add.png) | ![screenshot](documentation/responsiveness/chromium_tablet__recipes_add.png) | ![screenshot](documentation/responsiveness/chromium_desktop__recipes_add.png) | Works as expected |
+| Edit Recipe | ![screenshot](documentation/responsiveness/chromium_mobile__recipes_18_edit_.png) | ![screenshot](documentation/responsiveness/chromium_tablet__recipes_18_edit_.png) | ![screenshot](documentation/responsiveness/chromium_desktop__recipes_18_edit_.png) | Works as expected |
+| Delete Recipe | ![screenshot](documentation/responsiveness/chromium_mobile__recipes_18_delete_.png) | ![screenshot](documentation/responsiveness/chromium_tablet__recipes_18_delete_.png) | ![screenshot](documentation/responsiveness/chromium_desktop__recipes_18_delete_.png) | Works as expected |
+| Recipes List | ![screenshot](documentation/responsiveness/chromium_mobile__recipes.png) | ![screenshot](documentation/responsiveness/chromium_tablet__recipes.png) | ![screenshot](documentation/responsiveness/chromium_desktop__recipes.png) | Works as expected |
+| Recipe Details | ![screenshot](documentation/responsiveness/chromium_mobile__signup.png) | ![screenshot](documentation/responsiveness/chromium_tablet__signup.png) | ![screenshot](documentation/responsiveness/chromium_desktop__signup.png) | Works as expected |
+| 404 | ![screenshot](documentation/responsiveness/chromium_mobile__recipes_test.png) | ![screenshot](documentation/responsiveness/chromium_tablet__recipes_test.png) | ![screenshot](documentation/responsiveness/chromium_desktop__recipes_test.png) | Works as expected |
+
 
 ## Browser Compatibility
 
@@ -73,13 +76,15 @@ I've tested my deployed project on multiple browsers to check for compatibility 
 
 | Page | Chrome | Firefox | Safari | Notes |
 | --- | --- | --- | --- | --- |
-| Register | ![screenshot](documentation/browsers/chrome-register.png) | ![screenshot](documentation/browsers/firefox-register.png) | ![screenshot](documentation/browsers/safari-register.png) | Works as expected |
-| Login | ![screenshot](documentation/browsers/chrome-login.png) | ![screenshot](documentation/browsers/firefox-login.png) | ![screenshot](documentation/browsers/safari-login.png) | Works as expected |
-| Home | ![screenshot](documentation/browsers/chrome-home.png) | ![screenshot](documentation/browsers/firefox-home.png) | ![screenshot](documentation/browsers/safari-home.png) | Works as expected |
-| Add Recipe | ![screenshot](documentation/browsers/chrome-add-blog.png) | ![screenshot](documentation/browsers/firefox-add-blog.png) | ![screenshot](documentation/browsers/safari-add-blog.png) | Works as expected |
-| Edit Recipe | ![screenshot](documentation/browsers/chrome-edit-blog.png) | ![screenshot](documentation/browsers/firefox-edit-blog.png) | ![screenshot](documentation/browsers/safari-edit-blog.png) | Works as expected |
-| Recipes List | ![screenshot](documentation/browsers/chrome-blog-post.png) | ![screenshot](documentation/browsers/firefox-blog-post.png) | ![screenshot](documentation/browsers/safari-blog-post.png) | Works as expected |
-| 404 | ![screenshot](documentation/browsers/chrome-404.png) | ![screenshot](documentation/browsers/firefox-404.png) | ![screenshot](documentation/browsers/safari-404.png) | Works as expected |
+| Register | ![screenshot](documentation/browsers/chromium_desktop__signup.png) | ![screenshot](documentation/browsers/firefox_desktop__signup.png) | ![screenshot](documentation/browsers/safari-register.png) | Works as expected |
+| Login | ![screenshot](documentation/browsers/chromium_desktop__login.png) | ![screenshot](documentation/browsers/firefox_desktop__login.png) | ![screenshot](documentation/browsers/safari-login.png) | Works as expected |
+| Home | ![screenshot](documentation/browsers/chromium_desktop__random_1.png) | ![screenshot](documentation/browsers/firefox_desktop__random_1.png) | ![screenshot](documentation/browsers/safari-home.png) | Works as expected |
+| Add Recipe | ![screenshot](documentation/browsers/chromium_desktop__recipes_add.png) | ![screenshot](documentation/browsers/firefox_desktop__recipes_add.png) | ![screenshot](documentation/browsers/safari-add-blog.png) | Works as expected |
+| Edit Recipe | ![screenshot](documentation/browsers/chromium_desktop__recipes_18_edit_.png) | ![screenshot](documentation/browsers/firefox_desktop__recipes_18_edit_.png) | ![screenshot](documentation/browsers/safari-edit-blog.png) | Works as expected |
+| Delete Recipe | ![screenshot](documentation/browsers/chromium_desktop__recipes_18_delete_.png) | ![screenshot](documentation/browsers/firefox_desktop__recipes_18_delete_.png) | ![screenshot](documentation/browsers/safari-edit-blog.png) | Works as expected |
+| Recipes List | ![screenshot](documentation/browsers/chromium_desktop__recipes.png) | ![screenshot](documentation/browsers/firefox_desktop__recipes.png) | ![screenshot](documentation/browsers/safari-blog-post.png) | Works as expected |
+| Recipe Details | ![screenshot](documentation/browsers/chromium_desktop__recipes_18.png) | ![screenshot](documentation/browsers/firefox_desktop__recipes_18.png) | ![screenshot](documentation/browsers/safari-blog-post.png) | Works as expected |
+| 404 | ![screenshot](documentation/browsers/chromium_desktop__recipes_test.png) | ![screenshot](documentation/browsers/firefox_desktop__recipes_test.png) | ![screenshot](documentation/browsers/safari-404.png) | Works as expected |
 
 ## Lighthouse Audit
 
