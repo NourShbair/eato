@@ -106,16 +106,16 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',  # noqa
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',  # noqa
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',  # noqa
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',  # noqa
     },
 ]
 
@@ -151,11 +151,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Cloudinary Configuration
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-cloudinary.config(     
-    cloud_name= os.environ.get("CLOUDINARY_CLOUD_NAME"),     
-    api_key=os.environ.get("CLOUDINARY_API_KEY"),     
-    api_secret=os.environ.get('CLOUDINARY_API_SECRET'),     
-    secure=True )
+cloudinary.config(
+    cloud_name=os.environ.get("CLOUDINARY_CLOUD_NAME"),
+    api_key=os.environ.get("CLOUDINARY_API_KEY"),
+    api_secret=os.environ.get('CLOUDINARY_API_SECRET'),
+    secure=True)
 # Enable media upload
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'

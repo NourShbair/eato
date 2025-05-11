@@ -3,12 +3,14 @@ from django.contrib.auth.models import User
 from django.db import models
 from cloudinary.models import CloudinaryField
 
+
 # Cuisine model (e.g., Italian, Middle Eastern, etc.)
 class Cuisine(models.Model):
     name = models.CharField(max_length=100, unique=True)
 
     def __str__(self):
         return self.name
+
 
 # MealType model (e.g., Breakfast, Lunch, Dinner)
 class MealType(models.Model):
@@ -17,12 +19,14 @@ class MealType(models.Model):
     def __str__(self):
         return self.name
 
+
 # AllergyTag model (e.g., Gluten-Free, Dairy-Free)
 class AllergyTag(models.Model):
     name = models.CharField(max_length=100, unique=True)
 
     def __str__(self):
         return self.name
+
 
 # Ingredient model (e.g., Flour, Eggs, Milk)
 class Ingredient(models.Model):
@@ -31,30 +35,36 @@ class Ingredient(models.Model):
     def __str__(self):
         return self.name
 
+
 # Recipe model (Main model for storing recipes)
 class Recipe(models.Model):
     title = models.CharField(max_length=200)
     description = models.CharField(max_length=300)
     instructions = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
-    created_by = models.ForeignKey(User, on_delete=models.CASCADE)  # User who created the recipe
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE)  # User who created the recipe   # noqa
     cuisine = models.ForeignKey(Cuisine, on_delete=models.SET_NULL, null=True)
     image = CloudinaryField('image')  # Store images on Cloudinary
-    likes = models.ManyToManyField(User, related_name='liked_recipes', blank=True)
-    favorites = models.ManyToManyField(User, related_name='favorite_recipes', blank=True)
-    
+    likes = models.ManyToManyField(User, related_name='liked_recipes', blank=True)   # noqa
+    favorites = models.ManyToManyField(User, related_name='favorite_recipes', blank=True)   # noqa
+
     # Many-to-Many relationships
     meal_types = models.ManyToManyField(MealType, blank=True)
     allergy_tags = models.ManyToManyField(AllergyTag, blank=True)
 
     def __str__(self):
         return self.title
-    
+
     def total_likes(self):
         return self.likes.count()
 
     def total_favorites(self):
         return self.favorites.count()
+    
+    @property
+    def ingredients(self):
+        return Ingredient.objects.filter(recipeingredient__recipe=self)
+
 
 # RecipeIngredient model (Intermediate model to store ingredient details)
 class RecipeIngredient(models.Model):
@@ -64,7 +74,8 @@ class RecipeIngredient(models.Model):
     unit = models.CharField(max_length=50)  # Example: 'grams', 'cups'
 
     def __str__(self):
-        return f"{self.quantity} {self.unit} of {self.ingredient.name} in {self.recipe.title}"
+        return f"{self.quantity} {self.unit} of {self.ingredient.name} in {self.recipe.title}"   # noqa
+
 
 # Likes model (Tracks users who liked a recipe)
 class Like(models.Model):
@@ -77,6 +88,7 @@ class Like(models.Model):
 
     def __str__(self):
         return f"{self.user.username} likes {self.recipe.title}"
+
 
 # Favorites model (Tracks saved recipes)
 class Favorite(models.Model):

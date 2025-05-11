@@ -5,14 +5,16 @@ from django.db.models import Q
 from ..models import Recipe, MealType, Cuisine, AllergyTag
 import random
 
+
 # Main home view function
 def home(request):
     # Get current user
     user = request.user
-    
+
     # Fetch all required data from database
     meal_types = MealType.objects.all()
-    cuisines = Cuisine.objects.all().order_by('name')  # Sort cuisines alphabetically
+    # Sort cuisines alphabetically
+    cuisines = Cuisine.objects.all().order_by('name')
     allergies = AllergyTag.objects.all()
     # Get 5 most recent recipes
     recent_recipes = Recipe.objects.order_by('-created_at')[:5]
@@ -20,7 +22,7 @@ def home(request):
     # Handle random recipe feature
     random_recipe = None
     recipes = Recipe.objects.all()
-    # If random=1 is in URL parameters and recipes exist, select a random recipe
+    # If random=1 is and recipes exist, select a random recipe
     if request.GET.get("random") == "1" and recipes.exists():
         random_recipe = random.choice(recipes)
 
@@ -28,7 +30,7 @@ def home(request):
     user_recipe_count = 0
     user_liked_count = 0
     user_saved_count = 0
-    
+
     # If user is logged in, get their statistics
     if user.is_authenticated:
         # Count recipes created by user
@@ -54,11 +56,23 @@ def home(request):
     # Render the home page with context data
     return render(request, 'index.html', context)
 
+
 # View function to display recipes by meal type
 def meal_type_recipes(request, meal_type_id):
     # Filter recipes by meal type ID
-    recipes = Recipe.objects.filter(meal_types__id=meal_type_id)
-    return render(request, 'recipes_list.html', {'recipes': recipes})
+    meal_type = get_object_or_404(MealType, id=meal_type_id)
+    recipes = Recipe.objects.filter(meal_types=meal_type)
+    # Set up pagination (6 recipes per page)
+    paginator = Paginator(recipes, 6)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'recipes/recipes_list.html', {
+        'recipes': recipes,
+        'page_obj': page_obj,
+        # Add filter type for display
+        'filter_type': f"MealType: {meal_type.name}"
+        })
+
 
 # View function to display recipes by cuisine
 def cuisine_recipes(request, cuisine_id):
@@ -66,10 +80,17 @@ def cuisine_recipes(request, cuisine_id):
     cuisine = get_object_or_404(Cuisine, id=cuisine_id)
     # Filter recipes by cuisine
     recipes = Recipe.objects.filter(cuisine=cuisine)
-    return render(request, 'recipes_list.html', {
+    # Set up pagination (6 recipes per page)
+    paginator = Paginator(recipes, 6)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'recipes/recipes_list.html', {
         'recipes': recipes,
-        'filter_type': f"Cuisine: {cuisine.name}"  # Add filter type for display
+        'page_obj': page_obj,
+        # Add filter type for display
+        'filter_type': f"Cuisine: {cuisine.name}"
     })
+
 
 # View function to display recipes excluding specific allergy
 def allergy_recipes(request, allergy_id):
@@ -77,18 +98,19 @@ def allergy_recipes(request, allergy_id):
     allergy = get_object_or_404(AllergyTag, id=allergy_id)
     # Get recipes that don't have this allergy tag
     recipes = Recipe.objects.exclude(allergy_tags=allergy).distinct()
-    
+
     # Set up pagination (6 recipes per page)
     paginator = Paginator(recipes, 6)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    
+
     return render(request, 'recipes/recipes_list.html', {
         'recipes': recipes,
         'filter_type': f"Allergy: {allergy.name}",
         'page_obj': page_obj,
         'selected_allergy': allergy,
     })
+
 
 # View function to display user's liked recipes
 # Requires user to be logged in
@@ -97,6 +119,7 @@ def my_likes(request):
     # Get all recipes liked by the current user
     recipes = request.user.liked_recipes.all()
     return render(request, 'my_likes.html', {'recipes': recipes})
+
 
 # View function to display user's saved recipes
 # Requires user to be logged in
