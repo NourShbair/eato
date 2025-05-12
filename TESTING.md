@@ -103,41 +103,40 @@ I've tested my deployed project using the Lighthouse Audit tool to check for any
 
 Defensive programming was manually tested with the below user acceptance testing:
 
-| Page | Expectation | Test | Result | Screenshot |
-| --- | --- | --- | --- | --- |
-| Register | Prevent submission with missing fields. | Attempted to register with blank username and password fields. | Error message displayed: "This field is required". | ![screenshot](documentation/defensive/create-post.png) |
-| Register | Prevent registration with existing username. | Tried registering with a username that already exists. | Error shown: "A user with that username already exists". | ![screenshot](documentation/defensive/update-post.png) |
-| Login | Prevent login with incorrect credentials. | Entered wrong password for a valid user. | Login failed with error: "Please enter a correct username and password". | ![screenshot](documentation/defensive/delete-post.png) |
-| Add Recipe | Prevent recipe submission without required fields. | Tried submitting recipe without title, instructions, or image. | Field-specific validation errors displayed. | ![screenshot](documentation/defensive/published-posts.png) |
-| Add Recipe | Prevent invalid image uploads. | Attempted to upload a .txt file as an image. | Error shown: "Upload a valid image. The file you uploaded was either not an image or a corrupted image". | ![screenshot](documentation/defensive/preview-draft.png) |
-| Add Recipe | Prevent ingredient submission with missing data. | Tried to submit ingredient row with empty name or quantity. | Ingredient row rejected; user prompted to complete all fields. | ![screenshot](documentation/defensive/edit-delete-comments.png) |
-| User Authentication | Feature is expected to allow registered users to log in to the site. | Attempted to log in with valid and invalid credentials. | Login was successful with valid credentials; invalid credentials were rejected. | ![screenshot](documentation/defensive/login.png) |
-| Recipe Details | Handle non-existent recipe ID. | Accessed /recipe/9999/ where ID doesn't exist. | Custom 404 page displayed. | ![screenshot](documentation/defensive/register.png) |
-| Search | Handle empty query gracefully. | Searched with no keyword. | Page loads with message: â€œNo results foundâ€ or empty results. | ![screenshot](documentation/defensive/logout.png) |
-| Search | Prevent search crash on special characters. | Searched using !@#$%^&*(). | No crash; search handled safely. | ![screenshot](documentation/defensive/add-comment.png) |
-| Like Recipe | Prevent duplicate likes. | Liked the same recipe twice. | Only one like recorded per user. | ![screenshot](documentation/defensive/pending-approval.png) |
-| Save Recipe | Prevent duplicate saves. | Tried saving the same recipe multiple times. | Recipe saved once; no duplicates created. | ![screenshot](documentation/defensive/edit-user-comments.png) |
-| Edit Recipe | Block unauthorized users from editing others' recipes. | Logged in as user A and tried to access edit page for user B's recipe. | Access denied (403) or redirected to homepage. | ![screenshot](documentation/defensive/delete-user-comments.png) |
-| Delete Recipe | Require confirmation or permissions. | Tried deleting recipe directly via URL. | Deletion blocked for unauthorized user or confirmed for owner. | ![screenshot](documentation/defensive/view-posts-guest.png) |
-| Logout | Ensure session termination. | Logged out and attempted to access protected page. | Redirected to login page. | ![screenshot](documentation/defensive/commenter-names.png) |
-| 404 Error Page | Feature is expected to display a 404 error page for non-existent pages. | Navigated to an invalid URL (e.g., `/error`). | A custom 404 error page was displayed as expected. | ![screenshot](documentation/defensive/404.png) |
-| 500 Error Page | Feature is expected to display a 500 error page for crash-exist pages. | Navigated to an invalid URL (e.g., `/crash`). | A custom 500 error page was displayed as expected. | ![screenshot](documentation/defensive/404.png) |
+| Page | Expectation | Test | Result |
+| --- | --- | --- | --- |
+| Register | Prevent submission with missing fields. | Attempted to register with blank username and password fields. | Error message displayed: "This field is required". |
+| Register | Prevent registration with existing username. | Tried registering with a username that already exists. | Error shown: "A user with that username already exists". |
+| Login | Prevent login with incorrect credentials. | Entered wrong password for a valid user. | Login failed with error: "Please enter a correct username and password". |
+| Add Recipe | Prevent recipe submission without required fields. | Tried submitting recipe without title, instructions, or image. | Field-specific validation errors displayed. |
+| Add Recipe | Prevent invalid image uploads. | Attempted to upload a .txt file as an image. | Error shown: "Upload a valid image. The file you uploaded was either not an image or a corrupted image". |
+| Add Recipe | Prevent ingredient submission with missing data. | Tried to submit ingredient row with empty name or quantity. | Ingredient row rejected; user prompted to complete all fields. |
+| User Authentication | Feature is expected to allow registered users to log in to the site. | Attempted to log in with valid and invalid credentials. | Login was successful with valid credentials; invalid credentials were rejected. |
+| Recipe Details | Handle non-existent recipe ID. | Accessed /recipe/9999/ where ID doesn't exist. | Custom 404 page displayed. |
+| Search | Prevent search crash on special characters. | Searched using !@#$%^&*(). | No crash; search handled safely. |
+| Like Recipe | Prevent duplicate likes. | Liked the same recipe twice. | Only one like recorded per user. |
+| Save Recipe | Prevent duplicate saves. | Tried saving the same recipe multiple times. | Recipe saved once; no duplicates created. |
+| Edit Recipe | Block unauthorized users from editing others' recipes. | Logged in as user A and tried to access edit page for user B's recipe. | Access denied (403) or redirected to homepage. |
+| Delete Recipe | Require confirmation or permissions. | Tried deleting recipe directly via URL. | Deletion blocked for unauthorized user or confirmed for owner. |
+| Logout | Ensure session termination. | Logged out and attempted to access protected page. | Redirected to login page. |
+| 404 Error Page | Feature is expected to display a 404 error page for non-existent pages. | Navigated to an invalid URL (e.g., `/error`). | A custom 404 error page was displayed as expected. |
+| 500 Error Page | Feature is expected to display a 500 error page for crash-exist pages. | Navigated to an invalid URL (e.g., `/crash`). | A custom 500 error page was displayed as expected.|
 
 
 ## User Story Testing
 
-| Target | Expectation | Outcome | Screenshot |
-| --- | --- | --- | --- |
-| As a user | I would like to register for an account | so that I can create and manage my own recipes | ![screenshot](documentation/features/feature01.png) |
-| As a registerd user | I would like to log in to my account | so that I can access my saved and created recipes | ![screenshot](documentation/features/feature01.png) |
-| As a registerd user | I would like to add a new recipe with a title, image, ingredients, and instructions | so that I can preserve and share my cooking methods | ![screenshot](documentation/features/feature01.png) |
-| As a registerd user | I would like to edit or delete my own recipes | so that I can update them over time or remove them when necessary | ![screenshot](documentation/features/feature01.png) |
-| As a registerd user | I would like to assign meal types, cuisine, and allergy tags to recipes | so that others can easily discover and filter suitable dishes | ![screenshot](documentation/features/feature01.png) |
-| As a registerd user | I would like to upload and preview a recipe image | so that my recipe posts are more visually appealing | ![screenshot](documentation/features/feature01.png) |
-| As a registerd user | I would like to save (bookmark) recipes I like | so that I can return to them easily later | ![screenshot](documentation/features/feature01.png) |
-| As a registerd user | I would like to like a recipe | so that I can show appreciation and see popular dishes | ![screenshot](documentation/features/feature01.png) |
-| As a user | I would like to view all the recipes I’ve saved or liked | so that I can revisit my favorites quickly | ![screenshot](documentation/features/feature01.png) |
-| As a user | I would like to search recipes by title or ingredient | so that I can quickly find something specific to cook | ![screenshot](documentation/features/feature01.png) |
+| Target | Expectation | Outcome |
+| --- | --- | --- |
+| As a user | I would like to register for an account | so that I can create and manage my own recipes |
+| As a registerd user | I would like to log in to my account | so that I can access my saved and created recipes |
+| As a registerd user | I would like to add a new recipe with a title, image, ingredients, and instructions | so that I can preserve and share my cooking methods |
+| As a registerd user | I would like to edit or delete my own recipes | so that I can update them over time or remove them when necessary |
+| As a registerd user | I would like to assign meal types, cuisine, and allergy tags to recipes | so that others can easily discover and filter suitable dishes |
+| As a registerd user | I would like to upload and preview a recipe image | so that my recipe posts are more visually appealing |
+| As a registerd user | I would like to save (bookmark) recipes I like | so that I can return to them easily later |
+| As a registerd user | I would like to like a recipe | so that I can show appreciation and see popular dishes |
+| As a user | I would like to view all the recipes I’ve saved or liked | so that I can revisit my favorites quickly |
+| As a user | I would like to search recipes by title or ingredient | so that I can quickly find something specific to cook |
 
 
 ## Automated Testing
@@ -205,7 +204,7 @@ Below are the results from the tests that I've written for this application:
 
 | Test Suites | Tests | Screenshot |
 | --- | --- | --- |
-| 1 passed | 16 passed | ![screenshot](documentation/automation/jest-coverage.png) |
+| 4 passed | 4 passed | ![screenshot](documentation/unit-test.png) |
 
 ### Python (Unit Testing)
 
