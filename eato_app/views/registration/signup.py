@@ -7,16 +7,18 @@ from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 import re
 
-# Custom validator function to ensure username only contains letters and numbers
+
+# Custom validator function to ensure username only contains letters and numbers   # noqa
 def validate_username_only_letters_digits(value):
     if not re.match(r'^[a-zA-Z0-9]+$', value):
-        raise ValidationError("Username can only contain letters and digits. No special characters allowed.")
-    
+        raise ValidationError("Username can only contain letters and digits. No special characters allowed.")   # noqa
+
+
 # Custom signup form that extends Django's UserCreationForm
 class SignupForm(UserCreationForm):
     # Add email field (not included in default UserCreationForm)
     email = forms.EmailField(required=True)
-    
+
     # Override username field to add custom validator
     username = forms.CharField(
         max_length=150,
@@ -27,7 +29,7 @@ class SignupForm(UserCreationForm):
     # Meta class to specify model and form fields
     class Meta:
         model = User  # Use Django's built-in User model
-        fields = ['username', 'email', 'password1', 'password2']  # Fields to include in the form
+        fields = ['username', 'email', 'password1', 'password2']  # Fields to include in the form   # noqa
 
     # Custom validation method for username
     def clean_username(self):
@@ -44,22 +46,23 @@ class SignupForm(UserCreationForm):
         if User.objects.filter(email__iexact=email).exists():
             raise forms.ValidationError("This email is already registered.")
         return email
-    
+
+
 # View function to handle user signup
 def signup(request):
-    if request.method == 'POST':  
+    if request.method == 'POST':
         # If form is submitted
-        form = SignupForm(request.POST)  # Create form instance with submitted data
+        form = SignupForm(request.POST)  # Create form instance with submitted data   # noqa
         if form.is_valid():  # Check if form data is valid
             # Save the new user
             user = form.save()
             # Automatically log in the new user
             login(request, user)
             # Add success message
-            messages.success(request, "You've signed up successfully and are now logged in. Welcome to Eato!")
+            messages.success(request, "You've signed up successfully and are now logged in. Welcome to Eato!")   # noqa
             # Redirect to home page
             return redirect('index')
-    else:  
+    else:
         # If GET request, show empty form
         form = SignupForm()
 

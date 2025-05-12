@@ -4,6 +4,7 @@ from ...models import Recipe, AllergyTag
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 
+
 def recipes_list(request):
     # Get filter parameter from URL query string
     filter_by = request.GET.get('filter')
@@ -33,24 +34,25 @@ def recipes_list(request):
         'page_obj': page_obj
     })
 
+
 # View function to display recipes filtered by allergy
 def allergy_recipes(request, allergy_id):
     # Get the allergy object or return 404 if not found
     allergy = get_object_or_404(AllergyTag, id=allergy_id)
-    
+
     # Get all recipes that don't have this allergy tag
     # distinct() ensures no duplicate recipes
     recipes = Recipe.objects.exclude(allergy_tags=allergy).distinct()
-    
+
     # Set up pagination
     paginator = Paginator(recipes, 6)  # Show 6 recipes per page
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    
+
     # Render template with filtered recipes
     return render(request, 'recipes/recipes_list.html', {
         'recipes': recipes,
         'filter_type': f"Allergy: {allergy.name}",  # Display current filter
         'page_obj': page_obj,
-        'selected_allergy': allergy,  # Pass selected allergy for UI highlighting
+        'selected_allergy': allergy,  # Pass selected allergy for UI highlighting   # noqa
     })

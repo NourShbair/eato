@@ -3,6 +3,7 @@ from ...models import Recipe, MealType, Cuisine
 from django.core.paginator import Paginator
 from django.db.models import Q
 
+
 def recipe_search(request):
     # Get search parameters from URL query string
     query = request.GET.get('q', '')  # Search text query
@@ -17,7 +18,7 @@ def recipe_search(request):
         # Search in multiple fields using Q objects for OR conditions
         recipes = recipes.filter(
             Q(title__icontains=query) |  # Search in recipe title
-            Q(recipeingredient__ingredient__name__icontains=query) |  # Search in ingredients
+            Q(recipeingredient__ingredient__name__icontains=query) |  # Search in ingredients   # noqa
             Q(instructions__icontains=query)  # Search in instructions
         )
 
@@ -41,7 +42,7 @@ def recipe_search(request):
     context = {
         'query': query,  # Current search query
         'page_obj': page_obj,  # Paginated results
-        'meal_types': MealType.objects.all(),  # All meal types for filter options
+        'meal_types': MealType.objects.all(),  # All meal types for filter options   # noqa
         'cuisines': Cuisine.objects.all(),  # All cuisines for filter options
         'selected_category': category_id,  # Currently selected category
         'selected_cuisine': cuisine_id,  # Currently selected cuisine

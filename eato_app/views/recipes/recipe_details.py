@@ -5,6 +5,7 @@ from ...models import Recipe, RecipeIngredient
 from .add_recipe import RecipeForm
 from django.forms import modelformset_factory
 
+
 def recipe_details(request, recipe_id):
     # Get the recipe object or return 404 if not found
     recipe = get_object_or_404(Recipe, id=recipe_id)
@@ -19,6 +20,7 @@ def recipe_details(request, recipe_id):
     # Render the recipe details template with context
     return render(request, 'recipes/recipe_details.html', context)
 
+
 # View function to edit recipe
 # ensures only logged-in users can access this view
 @login_required
@@ -26,20 +28,20 @@ def edit_recipe(request, recipe_id):
     # Get the recipe object or return 404 if not found
     # Also ensures only the creator can edit the recipe
     recipe = get_object_or_404(Recipe, id=recipe_id, created_by=request.user)
-    
+
     # Create a formset factory for handling multiple ingredients
     IngredientFormSet = modelformset_factory(
-        RecipeIngredient, 
-        fields=('ingredient', 'quantity', 'unit'), 
+        RecipeIngredient,
+        fields=('ingredient', 'quantity', 'unit'),
         extra=1  # Add one extra empty form
     )
-    
+
     if request.method == 'POST':
         # Process the submitted form data
         form = RecipeForm(request.POST, request.FILES, instance=recipe)
         # Get the formset data for ingredients
         formset = IngredientFormSet(
-            request.POST, 
+            request.POST,
             queryset=RecipeIngredient.objects.filter(recipe=recipe)
         )
 
@@ -69,10 +71,11 @@ def edit_recipe(request, recipe_id):
 
     # Render the edit template with forms
     return render(request, 'recipes/edit_recipe.html', {
-        'form': form, 
+        'form': form,
         'recipe': recipe,
         'formset': formset
     })
+
 
 # ensures only logged-in users can access this view
 @login_required

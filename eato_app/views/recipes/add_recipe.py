@@ -4,11 +4,12 @@ from django import forms
 from ...models import Recipe, RecipeIngredient, Ingredient
 from django.contrib import messages
 
+
 # Custom form class for Recipe model
 class RecipeForm(forms.ModelForm):
     class Meta:
         model = Recipe
-        # Define which fields from the Recipe model should be included in the form
+        # Define which fields from the Recipe model should be included in the form   # noqa
         fields = [
             'title',
             'description',
@@ -17,14 +18,14 @@ class RecipeForm(forms.ModelForm):
             'meal_types',
             'allergy_tags',
             'instructions',
-        ]
-        
+            ]
+
         # Customize form widgets for specific fields
         widgets = {
             'meal_types': forms.CheckboxSelectMultiple(),
             'allergy_tags': forms.CheckboxSelectMultiple(),
             'cuisines': forms.SelectMultiple(attrs={'class': 'form-select'}),
-            'instructions': forms.Textarea(attrs={'rows': 5, 'class': 'form-control'}),
+            'instructions': forms.Textarea(attrs={'rows': 5, 'class': 'form-control'}),   # noqa
         }
 
     # Custom validation for image field
@@ -32,8 +33,9 @@ class RecipeForm(forms.ModelForm):
         image = self.cleaned_data.get('image')
         # Ensure an image is provided
         if not image:
-            raise forms.ValidationError("An image is required for your recipe.")
+            raise forms.ValidationError("An image is required for your recipe.")   # noqa
         return image
+
 
 # ensures only logged-in users can access this view
 @login_required
@@ -41,7 +43,7 @@ def add_recipe(request):
     if request.method == 'POST':
         # Create form instance with submitted data, including files
         form = RecipeForm(request.POST, request.FILES)
-        
+
         if form.is_valid():
             # Create recipe object but don't save to database yet
             recipe = form.save(commit=False)
@@ -57,15 +59,15 @@ def add_recipe(request):
             names = request.POST.getlist('ingredient_name')
             quantities = request.POST.getlist('ingredient_quantity')
             units = request.POST.getlist('ingredient_unit')
-            
+
             # Debug print
             print("Names:", names)
-            
+
             # Process each ingredient
             for name, quantity, unit in zip(names, quantities, units):
-                if name.strip():  # Only process if ingredient name is not empty
+                if name.strip():  # Only process if ingredient name is not empty   # noqa
                     # Get or create ingredient in the database
-                    ingredient_obj, created = Ingredient.objects.get_or_create(name=name.strip())
+                    ingredient_obj, created = Ingredient.objects.get_or_create(name=name.strip())   # noqa
                     # Create recipe-ingredient relationship
                     RecipeIngredient.objects.create(
                         recipe=recipe,

@@ -13,10 +13,11 @@ def generate_test_image(name="test.jpg"):
     buffer.seek(0)
     return SimpleUploadedFile(name, buffer.read(), content_type="image/jpeg")
 
+
 class EatoCoreTests(TestCase):
 
     def setUp(self):
-        self.user = User.objects.create_user(username='chef', password='test123')
+        self.user = User.objects.create_user(username='chef', password='test123')   # noqa
         self.client.login(username='chef', password='test123')
 
         self.cuisine = Cuisine.objects.create(name='Italian')
@@ -28,7 +29,7 @@ class EatoCoreTests(TestCase):
         recipe = Recipe.objects.create(
             title="Carbonara",
             description="Creamy pasta with pancetta",
-            instructions="1. Boil pasta\n2. Cook pancetta\n3. Mix with eggs and cheese",
+            instructions="1. Boil pasta\n2. Cook pancetta\n3. Mix with eggs and cheese",   # noqa
             image=self.image,
             cuisine=self.cuisine,
             created_by=self.user,
@@ -41,8 +42,8 @@ class EatoCoreTests(TestCase):
 
         from eato_app.models import RecipeIngredient
 
-        RecipeIngredient.objects.create(recipe=recipe, ingredient=spaghetti, quantity=200, unit="g")
-        RecipeIngredient.objects.create(recipe=recipe, ingredient=eggs, quantity=2, unit="pcs")
+        RecipeIngredient.objects.create(recipe=recipe, ingredient=spaghetti, quantity=200, unit="g")   # noqa
+        RecipeIngredient.objects.create(recipe=recipe, ingredient=eggs, quantity=2, unit="pcs")   # noqa
 
         self.assertEqual(Recipe.objects.count(), 1)
         self.assertEqual(recipe.ingredients.count(), 2)

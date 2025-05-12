@@ -60,7 +60,7 @@ class Recipe(models.Model):
 
     def total_favorites(self):
         return self.favorites.count()
-    
+
     @property
     def ingredients(self):
         return Ingredient.objects.filter(recipeingredient__recipe=self)
