@@ -239,16 +239,14 @@ Below are the results from the full coverage report on my application that I've 
 
 ## Bugs
 
-
 ### Fixed Bugs
 
-[![GitHub issue custom search](https://img.shields.io/github/issues-search?query=repo%3ANourShbair%2Feato%20label%3Abug&label=bugs)](https://www.github.com/NourShbair/eato/issues?q=is%3Aissue+is%3Aclosed+label%3Abug)
+| Bug | Description | Fix |
+| --- | --- | --- |
+| Label nesting error | Used {{ field.label_tag }} inside another <label> tag, causing HTML validation errors. | Replaced with {{ field.label_tag(attrs={'class': 'form-label'}) }} or used field.label inside custom label. |
+| Ingredient() got unexpected keyword | Attempted to assign quantity and unit directly to Ingredient, which are part of RecipeIngredient. | Separated Ingredient creation from RecipeIngredient creation. |
+| Invalid image file in tests | Using dummy byte content with CloudinaryField triggered Cloudinary error. | Fixed by generating a valid in-memory JPEG using Pillow and BytesIO. |
 
-I've used [GitHub Issues](https://www.github.com/NourShbair/eato/issues) to track and manage bugs and issues during the development stages of my project.
-
-All previously closed/fixed bugs can be tracked [here](https://www.github.com/NourShbair/eato/issues?q=is%3Aissue+is%3Aclosed+label%3Abug).
-
-![screenshot](documentation/bugs/gh-issues-closed.png)
 
 ### Unfixed Bugs
 
@@ -258,15 +256,15 @@ All previously closed/fixed bugs can be tracked [here](https://www.github.com/No
 
 Any remaining open issues can be tracked [here](https://www.github.com/NourShbair/eato/issues).
 
-![screenshot](documentation/bugs/gh-issues-open.png)
+![screenshot](documentation/bugs/issues-open.png)
 
 ### Known Issues
 
-| Issue | Screenshot |
-| --- | --- |
-| On devices smaller than 375px, the page starts to have horizontal `overflow-x` scrolling. | ![screenshot](documentation/issues/overflow.png) |
-| When validating HTML with a semantic `<section>` element, the validator warns about lacking a header `h2-h6`. This is acceptable. | ![screenshot](documentation/issues/section-header.png) |
-| Validation errors on "signup.html" coming from the Django Allauth package. | ![screenshot](documentation/issues/allauth.png) |
+| Bug | Description | Status / Notes |
+| --- | --- | --- |
+| Duplicate ingredient names allowed | Users can enter the same ingredient name multiple times in one recipe. | No uniqueness validation at the form level; requires custom formset or JS validation. |
+| Inconsistent image preview behavior on some browsers | The image preview sometimes fails to show on mobile Safari. | Not consistently reproducible; needs further browser-specific testing and fallback handling. |
+| Empty search header when using filters | When using filters (e.g., meal type, cuisine) without a keyword, the page header shows: Results for: "" instead of All Recipes or something relevant. | Needs conditional logic in template or view to detect presence of search query and fallback to appropriate heading (e.g., "Filtered Recipes" or "All Recipes"). |
 
 > [!IMPORTANT]
 > There are no remaining bugs that I am aware of, though, even after thorough testing, I cannot rule out the possibility.

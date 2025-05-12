@@ -44,9 +44,9 @@ def edit_recipe(request, recipe_id):
             request.POST,
             queryset=RecipeIngredient.objects.filter(recipe=recipe)
         )
-
+        print(form.is_valid() ," , ", formset)
         # Validate both form and formset
-        if form.is_valid() and formset.is_valid():
+        if form.is_valid():
             # Save the main recipe form
             form.save()
             # Process ingredients
