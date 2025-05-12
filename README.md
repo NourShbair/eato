@@ -89,20 +89,6 @@ I used [coolors.co](https://coolors.co/080708-3772ff-df2935-fdca40-e6e8e6) to ge
 - [Quicksand](https://fonts.google.com/?query=Quicksand) was used for all other secondary text.
 - [Font Awesome](https://fontawesome.com) icons were used throughout the site, such as the social media icons in the footer.
 
-## Wireframes
-
-To follow best practice, wireframes were developed for mobile, tablet, and desktop sizes.
-I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wireframes.
-
-| Page | Mobile | Tablet | Desktop |
-| --- | --- | --- | --- |
-| Register | ![screenshot](documentation/wireframes/mobile-register.png) | ![screenshot](documentation/wireframes/tablet-register.png) | ![screenshot](documentation/wireframes/desktop-register.png) |
-| Login | ![screenshot](documentation/wireframes/mobile-login.png) | ![screenshot](documentation/wireframes/tablet-login.png) | ![screenshot](documentation/wireframes/desktop-login.png) |
-| Home | ![screenshot](documentation/wireframes/mobile-home.png) | ![screenshot](documentation/wireframes/tablet-home.png) | ![screenshot](documentation/wireframes/desktop-home.png) |
-| Add Blog | ![screenshot](documentation/wireframes/mobile-add-blog.png) | ![screenshot](documentation/wireframes/tablet-add-blog.png) | ![screenshot](documentation/wireframes/desktop-add-blog.png) |
-| Edit Blog | ![screenshot](documentation/wireframes/mobile-edit-blog.png) | ![screenshot](documentation/wireframes/tablet-edit-blog.png) | ![screenshot](documentation/wireframes/desktop-edit-blog.png) |
-| Blog Post | ![screenshot](documentation/wireframes/mobile-blog-post.png) | ![screenshot](documentation/wireframes/tablet-blog-post.png) | ![screenshot](documentation/wireframes/desktop-blog-post.png) |
-| 404 | ![screenshot](documentation/wireframes/mobile-404.png) | ![screenshot](documentation/wireframes/tablet-404.png) | ![screenshot](documentation/wireframes/desktop-404.png) |
 
 ## User Stories
 
@@ -136,24 +122,22 @@ I've used [Balsamiq](https://balsamiq.com/wireframes) to design my site wirefram
 
 | Feature | Notes | Screenshot |
 | --- | --- | --- |
-| Register | Users can register securely to create and manage their personal recipes. | ![screenshot](documentation/features/register.png) |
+| Register | Users can register securely to create and manage their personal recipes. | ![screenshot](documentation/features/signup.png) |
 | Login | Registered users can log in to access their dashboard and recipe content. | ![screenshot](documentation/features/login.png) |
-| Logout | Users can safely log out of their session. | ![screenshot](documentation/features/logout.png) |
-| Add Recipe | Authenticated users can add a new recipe with title, description, cuisine, image, meal type, and allergy tags. | ![screenshot](documentation/features/.png) |
-| Edit Recipe | Users can update their existing recipes, including ingredients and images. | ![screenshot](documentation/features/.png) |
-| Delete Recipe | Users can delete any of their own recipes. | ![screenshot](documentation/features/.png) |
+| Add Recipe | Authenticated users can add a new recipe with title, description, cuisine, image, meal type, and allergy tags. | ![screenshot](documentation/features/add.png) |
+| Edit Recipe | Users can update their existing recipes, including ingredients and images. | ![screenshot](documentation/features/edit.png) |
+| Delete Recipe | Users can delete any of their own recipes. | ![screenshot](documentation/features/delete.png) |
 | Pagination | Recipes list are displayed in pages, with six recipes per page. This provides better navigation for users through the recipes list. | ![screenshot](documentation/features/pagination.png) |
-| Add Ingredients | Ingredients can be added dynamically with fields for name, quantity, and unit. | ![screenshot](documentation/features/.png) |
-| Instructions Input | Recipes support rich, step-by-step instructions. | ![screenshot](documentation/features/.png) |
-| Cuisine & Meal Type Filters | Recipes can be tagged with cuisines and meal types for better categorization. | ![screenshot](documentation/features/.png) |
-| Allergy Tags | Recipes can be tagged with common allergens to help users avoid specific ingredients. | ![screenshot](documentation/features/-st.png) |
-| Save Recipe | Logged-in users can bookmark recipes to their profile for future use. | ![screenshot](documentation/features/.png) |
-| Like Recipe | Users can like recipes to show appreciation and see popularity. | ![screenshot](documentation/features/.png) |
-| User Profiles | Each user has a profile displaying their saved, liked and submitted recipes. | ![screenshot](documentation/features/.png) |
-| Image Upload & Preview | Users can upload an image and preview it before submitting a recipe. | ![screenshot](documentation/features/update-post.png) |
-| Responsive Design  | The site is fully responsive and optimized for mobile, tablet, and desktop use. | ![screenshot](documentation/features/.png) |
-| 404 Page | A custom 404 error page is displayed when a user visits a non-existent route. | ![screenshot](documentation/features/.png) |
-| 500 Page | A custom 500 error page is displayed when a user visits a crash-exist route. | ![screenshot](documentation/features/.png) |
+| Add Ingredients | Ingredients can be added dynamically with fields for name, quantity, and unit. | ![screenshot](documentation/features/ingredient.png) |
+| Instructions Input | Recipes support rich, step-by-step instructions. | ![screenshot](documentation/features/instruction.png) |
+| Cuisine & Meal Type Filters | Recipes can be tagged with cuisines and meal types for better categorization. | ![screenshot](documentation/features/filter.png) |
+| Allergy Tags | Recipes can be tagged with common allergens to help users avoid specific ingredients. | ![screenshot](documentation/features/allergy.png) |
+| Save Recipe | Logged-in users can bookmark recipes to their profile for future use. | ![screenshot](documentation/features/save.png) |
+| Like Recipe | Users can like recipes to show appreciation and see popularity. | ![screenshot](documentation/features/like.png) |
+| User Profiles | Each user has a profile displaying their saved, liked and submitted recipes. | ![screenshot](documentation/features/profile.png) |
+| Image Upload & Preview | Users can upload an image and preview it before submitting a recipe. | ![screenshot](documentation/features/image.png) |
+| 404 Page | A custom 404 error page is displayed when a user visits a non-existent route. | ![screenshot](documentation/features/404.png) |
+| 500 Page | A custom 500 error page is displayed when a user visits a crash-exist route. | ![screenshot](documentation/features/500.png) |
 
 ### Future Features
 
