@@ -60,9 +60,6 @@ def add_recipe(request):
             quantities = request.POST.getlist('ingredient_quantity')
             units = request.POST.getlist('ingredient_unit')
 
-            # Debug print
-            print("Names:", names)
-
             # Process each ingredient
             for name, quantity, unit in zip(names, quantities, units):
                 if name.strip():  # Only process if ingredient name is not empty   # noqa

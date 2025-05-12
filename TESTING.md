@@ -217,7 +217,6 @@ To create the coverage report, I would then run the following commands:
 
 - `pip3 install coverage`
 - `pip3 freeze --local > requirements.txt`
-- `coverage run --omit=*/site-packages/*,*/migrations/*,*/__init__.py,env.py,manage.py test`
 - `coverage run manage.py test`
 - `coverage report`
 

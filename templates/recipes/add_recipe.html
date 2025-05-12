@@ -63,6 +63,10 @@
       
       <!-- Ingredients Section -->
       <label class="form-label"><b>Ingredients</b></label>
+      <p class="text-muted small mb-2">
+        💡 Please enter ingredient quantities as decimal values (e.g., <code>0.25</code> instead of <code>1/4</code>).
+      </p>
+
       <div class="col-12 ingredient-group">
         <div id="ingredientsContainer">
           <!-- Initial Ingredient Row -->
@@ -74,7 +78,7 @@
             <!-- Ingredient Quantity Input -->
             <div class="col-4 col-md-3">
               <input type="number" name="ingredient_quantity" class="form-control" 
-                     placeholder="Quantity" step="any">
+                    placeholder="Quantity" step="any">
             </div>
             <!-- Ingredient Unit Input -->
             <div class="col-4 col-md-3">

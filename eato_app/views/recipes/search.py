@@ -43,7 +43,7 @@ def recipe_search(request):
         'query': query,  # Current search query
         'page_obj': page_obj,  # Paginated results
         'meal_types': MealType.objects.all(),  # All meal types for filter options   # noqa
-        'cuisines': Cuisine.objects.all(),  # All cuisines for filter options
+        'cuisines': Cuisine.objects.all().order_by('name'),  # All cuisines for filter options
         'selected_category': category_id,  # Currently selected category
         'selected_cuisine': cuisine_id,  # Currently selected cuisine
     }

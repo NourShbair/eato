@@ -8,5 +8,5 @@ def global_filters(request):
         
         # Get all cuisines from database
         # This will be available in all templates as {{ cuisines }}
-        'cuisines': Cuisine.objects.all(),
+        'cuisines': Cuisine.objects.all().order_by('name'),
     }
